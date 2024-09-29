@@ -243,6 +243,8 @@ main .titulo_main {
   padding: 10px;
   margin: 40px 0;
   width: 85%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 40px;
   background: var(--text-blue-gradient-color);
   background-clip: text;
   -webkit-background-clip: text;
