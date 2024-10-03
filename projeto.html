@@ -8,9 +8,10 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
     <script src="projeto.js" defer></script>
 
-    <title>Menu hamburguer</title>
+    <title>Portak da alfabetização</title>
 </head>
 <body>
     <header>
@@ -44,7 +45,7 @@
     <main>
         <!-- class="container" > BEGINNING -->
         <div class="container">
-            <h1 class="titulo_main">portal da alfabetização</h1>
+            <h1 class="title_main">portal da alfabetização</h1>
 
             <!-- SECTION_ONE > BEGINNING -->
             <section>
@@ -62,10 +63,39 @@
             <!-- SECTION_ONE > END -->
             
             <!-- SECTION_TWO > BEGINNING -->
-            <section>
-
+            <section class="section_two">
+                <h1 class="title_main">Sobre nós</h1>
+                <div class="slider-outer">
+                    <div class="prev button" alt="Prev"></div>
+                    <div class="slider-inner">
+                        <img class="chamada-single" src="images/main_section_two/slideshow/slide_1_desktop.png">
+                        <img class="chamada-single" src="images/main_section_two/slideshow/slide_2_desktop.png">
+                        <img class="chamada-single" src="images/main_section_two/slideshow/slide_3_desktop.png">
+                        <img class="chamada-single" src="images/main_section_two/slideshow/slide_4_desktop.png">
+                    </div>
+                    <div class="next button" alt="Next"></div>
+                </div>
             </section>
             <!-- SECTION_TWO > END -->
+
+            <section class="section_three">
+                <h1 class="title_main">Contate-nos</h1>
+                <form action="#" method="post">
+                    <label for="nome">Nome:</label><br>
+                    <input type="text" id="nome" name="nome" required><br><br>
+            
+                    <label for="email">Email:</label><br>
+                    <input type="email" id="email" name="email" required><br><br>
+            
+                    <label for="celular">Celular:</label><br>
+                    <input type="tel" id="celular" name="celular" required><br><br>
+            
+                    <label for="mensagem">Mensagem:</label><br>
+                    <textarea id="mensagem" name="mensagem" rows="4" cols="50" required></textarea><br><br>
+            
+                    <input type="submit" value="Enviar">
+                </form>
+            </section>
 
         </div>
         <!-- class="container" > END -->
