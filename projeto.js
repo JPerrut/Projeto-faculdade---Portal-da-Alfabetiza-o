@@ -68,7 +68,7 @@ window.addEventListener('resize', function() {
 
 $(function() {
     // Função anônima para o código só executar após todo o documento carregar.
-    
+
     var direction_Slide = 0, slides = $('.chamada-single'), autoResumeDelay;
     // autoResumeDelay: armazena o ID do temporizador de retomar a troca automática.
 
@@ -82,24 +82,37 @@ $(function() {
     function changeSlide() {
     // inicia a troca automatica de slides.
 
-        autoChangeInterval = setInterval(() => navigateSlide('next'), delay = 10000);
+        autoChangeInterval = setInterval(() => navigateSlide('next'), delay = 7000);
         // usa o setInterval para chamar a função navigatslide a cada 3 segundos usando a direção next.
     }
 
     function navigateSlide(direction) {
-    // controla a navegação entre os slides se next ou prev.
+        // controla a navegação entre os slides se next ou prev.
+    
+        var currentSlide = slides.eq(direction_Slide); 
+        // Seleciona o slide atual
 
-        slides.eq(direction_Slide).fadeOut(200);
-        // faz o slide desaparecer gradualmente em 200ms.
+        currentSlide.animate({ opacity: 0 }, 200, function() { 
+        // Anima a opacidade para 0
 
-        direction_Slide = (direction_Slide + (direction === 'next' ? 1 : -1) + slides.length) % slides.length;
-        // Se direction for exatamente igual a next, incrementa direction_Slide em 1, caso contrario decrementa em 1.
-        // % garante que o indice circulará dentro do seu número minimo e máximo.
-        // slides.length garante que o valor nunca seja negativo.
+            currentSlide.hide(); 
+            // Oculta o slide após a animação
 
-        slides.eq(direction_Slide).fadeIn(200);
-        // faz o slide aparecer gradualmente em 200ms
+            direction_Slide = (direction_Slide + (direction === 'next' ? 1 : -1) + slides.length) % slides.length;
+            // Atualiza a direção do slide com base na direção da navegação.
+            
+            var nextSlide = slides.eq(direction_Slide); 
+            // Seleciona o próximo slide
+
+            nextSlide.css({ opacity: 0 }).show().animate({ opacity: 1 }, 200); 
+            // Define a opacidade do próximo slide como 0 
+            // Mostra o próximo slide
+            // Anima a opacidade do próximo slide para 1
+        });
+    
+        resetAndResumeAutoChange(); // Reinicia a troca automática.
     }
+    
 
     function resetAndResumeAutoChange() {
         // Pausa a troca automática e reinicia após um atraso.
@@ -117,10 +130,10 @@ $(function() {
 
     initSlider(); changeSlide();
 
-    $('.next').on('click', () => {navigateSlide('next'); resetAndResumeAutoChange(); });
+    $('.next').on('click', () => navigateSlide('next'));
     // chama a função resetAndResumeAutoChange e passa para o próximo slide
 
-    $('.prev').on('click', () => {navigateSlide('prev'); resetAndResumeAutoChange(); });
+    $('.prev').on('click', () => navigateSlide('prev'));
     // chama a função resetAndResumeAutoChange e volta para o slide anterior
 
 }); //function() > END

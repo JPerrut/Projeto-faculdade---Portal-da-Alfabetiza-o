@@ -2,6 +2,7 @@
 
 /* ESTILIZAÇÃO GLOBAL */
 
+
 * {
   margin: 0;
   padding: 0;
@@ -251,7 +252,7 @@ main .title_main {
   text-align: center;
   font-size: 6rem;
   padding: 20px;
-  margin: 40px 0;
+  margin: 60px 0;
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 40px;
   background: var(--text-blue-gradient-color);
@@ -357,19 +358,6 @@ section .image_main {
 
   /* MAIN > SECTION > ONE > END */
 
-  /* MAIN > SECTION > TWO > BEGINNING */
-  
-main .section_two {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.section_two .title_main {
-  margin: 60px;
-}
-
-  /* MAIN > SECTION > TWO > END */
 
   /* SECTION > TWO > BEGINNING */
 
@@ -405,6 +393,8 @@ main .section_two {
   display: inline-block;
 }
 
+
+
       /* SLIDESHOW > IMAGES > END */
 
     /* SECTION > TWO > SLIDESHOW > END */
@@ -432,6 +422,21 @@ main .section_two {
     /* SECTION > TWO > BUTTONS > END */
 
   /* SECTION > TWO > END */
+
+  /* SECTION > THREE > BEGINNING */
+
+.section_three {
+  flex-direction: column;
+}
+
+.section_three input {
+  font-size: 14px;
+}
+
+.section_three label {
+  font-size: 20px;
+}
+  /* SECTION > THREE > END */
 
 /* MAIN > END */
 
