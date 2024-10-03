@@ -86,6 +86,7 @@ header {
 .nav-menu {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: var(--header-color);
   padding: 10px;
 }
@@ -104,7 +105,52 @@ header {
 
 /* NAV > IMAGEM LOGO > FIM */
 
+/* NAV > SIZE-TESTE-ICON > BEGINNING */
 
+
+.size-text {
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(var(--header-color), var(--header-color)) padding-box, var(--blue-gradient-color) border-box;
+  border: 1px solid transparent;
+  border-radius: 30px;
+  padding: 2px 7px;
+  gap: 2rem;
+  width: 9rem;
+}
+
+  /* MENU > INCREASE TEXT SIZE */
+
+  .size-text .button-size_text {
+    font-size: 2rem;
+    transition: all 1s;
+    background: transparent;
+    color: var(--font-color);
+    font-weight: 600;
+    border: none;
+  }
+  
+  .size-text .button-size_text:hover {
+    color: var(--blue-color);
+    transform: scale(1.1);
+    transition: 0.5s;
+    cursor: pointer;
+  }
+  
+    /* MENU > INCREASE TEXT SIZE > FIM */
+  
+    /* MENU > DARK AND WHITE MODE ICON */
+  
+  .icons {
+    font-size: 3rem;
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  /* MENU > DARK AND WHITE MODE ICON > FIM */
+
+/* NAV > SIZE-TESTE-ICON > END */
 
 /* NAV > MENU */
 
@@ -112,7 +158,7 @@ header {
   display: flex;
   justify-content: space-around;
   list-style: none;
-  width: 80%;
+  width: 60%;
   align-items: center;
   height: auto;
   background: var(--header-color);
@@ -136,48 +182,6 @@ header {
 }
   /* MENU > LIST > FIM */
 
-
-  /* MENU > INCREASE TEXT SIZE */
-
-.menu .size-text {
-  display: flex;
-  justify-content: center;
-  background: linear-gradient(var(--header-color), var(--header-color)) padding-box, var(--blue-gradient-color) border-box;
-  border: 1px solid transparent;
-  border-radius: 30px;
-  padding: 2px 7px;
-  gap: 2rem;
-  width: 9rem;
-}
-
-.size-text .button-size_text {
-  font-size: 2rem;
-  transition: all 1s;
-  background: transparent;
-  color: var(--font-color);
-  font-weight: 600;
-  border: none;
-}
-
-.size-text .button-size_text:hover {
-  color: var(--blue-color);
-  transform: scale(1.1);
-  transition: 0.5s;
-  cursor: pointer;
-}
-
-  /* MENU > INCREASE TEXT SIZE > FIM */
-
-  /* MENU > DARK AND WHITE MODE ICON */
-
-.icons {
-  font-size: 3rem;
-  padding: 10px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-  /* MENU > DARK AND WHITE MODE ICON > FIM */
 
   /* MENU > DIVIDING LINE */
 
@@ -252,7 +256,7 @@ main .title_main {
   text-align: center;
   font-size: 6rem;
   padding: 20px;
-  margin: 60px 0;
+  margin: 60px;
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 40px;
   background: var(--text-blue-gradient-color);
@@ -428,6 +432,7 @@ section .image_main {
 .section_three {
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 .section_three input, textarea {
@@ -440,11 +445,6 @@ section .image_main {
   background: linear-gradient(var(--back-color), var(--back-color)) padding-box, var(--blue-gradient-color) border-box;
   border: 1px solid transparent;
   resize: none;
-}
-
-form {
-  width: 70%;
-  text-align: center;
 }
 
 form div {
@@ -482,10 +482,8 @@ form label {
   resize: none;
 }
 
-
 form {
-  width: 70%;
-  text-align: center;
+  width: 80%;
 }
 
 form .box_input {
@@ -508,7 +506,7 @@ form .box_input {
 .box_input input:focus ~ label, .box_input textarea:focus ~ label,
 .box_input input:not(:placeholder-shown) ~ label, .box_input textarea:not(:placeholder-shown) ~ label {
   font-size: 15px;
-  top: -5px;
+  top: -9px;
   left: 35px;
   padding: 1px 10px 2px 10px;
   background: var(--back-color);
@@ -563,9 +561,13 @@ form .box_input {
 
 
 
-@media (max-width: 890px) {
+@media (max-width: 766px) {
 
 /* NAV > MENU */
+
+.logo {
+  width: 60%;
+}
 
 .menu-button {
   display: block;
@@ -577,14 +579,14 @@ form .box_input {
   width: 100%;
   height: 0;
   left: 0;
-  top:101%;
+  top:100%;
   gap: 5px;
   overflow: hidden;
   transition: height 0.5s ease, opacity 0.5s ease; 
 }
 
 .menu.show {
-  top:101%;
+  top:100%;
   height: 331.5px;
   border-image: var(--blue-gradient-color);
   border-image-slice: 1;
@@ -641,5 +643,8 @@ section {
   min-height: 420px;
 }
 
+form {
+  width: 95%
+}
 
 }
