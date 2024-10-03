@@ -141,3 +141,103 @@ $(function() {
     // SLIDESHOW > END
 
 // SECTION > TWO > END
+
+// SECTION > THREE > BEGINNING
+
+$(document).ready(function() {
+    $('.cell').mask('(00) 00000-0000'); 
+});
+
+// Seleciona o elemento com ID "name" do documento HTML
+const inputName = document.querySelector("#name");
+
+// Anexa um ouvinte de evento "keypress" ao campo de entrada
+inputName.addEventListener("keypress", function(e) {
+  
+// Chama a função checkChar para validar o caractere pressionado
+  if(!checkChar(e)) {
+// Se checkChar retornar falso (ou seja, o caractere não é uma letra)
+// Prevenir o comportamento padrão (inserir o caractere)
+    e.preventDefault();
+  }
+
+});
+
+// Função para verificar se o caractere pressionado é uma letra
+function checkChar(e) {
+  // Extrai o código de caractere do objeto de evento
+
+  const char = String.fromCharCode(e.keyCode);
+  // Define um padrão de expressão regular para letras (incluindo acentuadas)
+  const pattern = '[ A-Za-zÀ-ú]';
+
+  // Verifica se o caractere corresponde ao padrão
+  if(char.match(pattern)) {
+    // Se for uma letra, retorne true (permitir o caractere)
+    return true;
+  }
+}
+
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+
+const name = document.getElementById('name').value;
+const email = document.getElementById('email').value;
+const cell = document.getElementById('cell').value;
+const message = document.getElementById('message').value; 
+
+let isValid = true;
+
+if(name.length < 3) {document.getElementById('nameError').textContent = 'Por favor, preencha seu nome.';
+    isValid = false;
+} else {
+    document.getElementById('nameError').textContent = '';
+}
+
+const emailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w*)*\.\w+([-.]\w+)*$/;
+if(email === '') {
+    document.getElementById('emailError').textContent = 'Por favor, preencha seu email.';
+    isValid = false;
+} 
+else if (!emailRegex.test(email)) {
+    document.getElementById('emailError').textContent = 'Por favor, insira um email válido.';
+    isValid = false;
+}
+else {
+    document.getElementById('emailError').textContent = '';
+}
+
+
+if (cell === '') {
+    document.getElementById('cellError').textContent = 'Por favor, preencha com o número do seu celular.';
+    isValid = false;
+}
+else if (cell.length < 15) {
+    document.getElementById('cellError').textContent = 'Por favor, insira um número válido'
+    isValid = false;
+} 
+else {
+    document.getElementById('cellError').textContent = '';
+}
+
+// Validação do campo Mensagem
+if (message === '') {
+    document.getElementById('messageError').textContent = 'Por favor, preencha a mensagem.';
+    isValid = false;
+} else {
+    document.getElementById('messageError').textContent = '';
+}
+
+// Se todos os campos forem válidos, exibe a mensagem de sucesso e reseta o formulário
+if (isValid) {
+    alert('Formulário enviado com sucesso!');
+    document.getElementById('contactForm').reset(); // Limpa o formulário
+    document.getElementById('formSent').textContent = 'Formulário enviado com sucesso!'
+    setTimeout(function() {
+        document.getElementById('formSent').textContent = '';
+    }, 3000);
+}
+});
+
+// SECTION > THREE > END

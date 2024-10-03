@@ -9,9 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" defer></script>
     <script src="projeto.js" defer></script>
 
-    <title>Portak da alfabetização</title>
+    <title>Portal da alfabetização</title>
 </head>
 <body>
     <header>
@@ -85,20 +86,33 @@
             <section class="section_three">
 
                 <!-- FORM > BEGINNING -->
-                <form action="#" method="post">
-                    <label for="nome">Nome:</label><br>
-                    <input type="text" id="nome" name="nome" required><br><br>
-            
-                    <label for="email">Email:</label><br>
-                    <input type="email" id="email" name="email" required><br><br>
-            
-                    <label for="cell">Celular:</label><br>
-                    <input type="text" id="cell" name="cell" required><br><br>
-            
-                    <label for="message">Mensagem:</label><br>
-                    <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
-            
-                    <input type="submit" value="Enviar">
+                <form action="#" method="post" id="contactForm" novalidate>
+                    
+                    <div class="box_input">
+                        <input type="text" id="name" name="name" placeholder="" maxlength="60">
+                        <label>Nome:</label>
+                        <span id="nameError" class="error"></span>
+                    </div>
+
+                    <div class="box_input">
+                        <input type="email" id="email" name="email" placeholder="" >
+                        <label>Email:</label>
+                        <span id="emailError" class="error"></span>
+                    </div>
+
+                    <div class="box_input">
+                        <input type="text" id="cell" class="cell" name="cell" placeholder="" >
+                        <label>Celular:</label>
+                        <span id="cellError" class="error"></span>
+                    </div>
+                    <div class="box_input">
+                        <textarea id="message" name="message" placeholder="" rows="4" cols="50" maxlength="300"></textarea>
+                        <label>Mensagem:</label>
+                        <span id="messageError" class="error"></span>
+                    </div>
+
+                    <input type="submit" value="Enviar" id="submit" name="submit">
+                    <span id="formSent" class="formSent"></span>
                 </form>
                 <!-- FORM > END -->
 
