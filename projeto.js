@@ -60,10 +60,40 @@ $(document).ready(function() {
         lastScrollTop = scrollTop; 
         // Atualiza a última posição do scroll
       });
-    });
+ 
     
 
 // SCROLLING LINKS > END
+
+
+//  INCREASE AND DECREASE FONT > BEGINNING
+
+const maxFontSize = 12; // Tamanho máximo
+const minFontSize = 8; // Tamanho mínimo
+
+function changeFontSize(action) {
+    $('html, body').each(function() {
+        let size = parseInt($(this).css('font-size'));
+        if (action === 'aumentar' && size < maxFontSize) {
+            $(this).css('font-size', size + 1);
+        } else if (action === 'diminuir' && size > minFontSize) {
+            $(this).css('font-size', size - 1);
+        }
+    });
+    ignoreScroll = true;
+    setTimeout(() => ignoreScroll = false, 300);
+}
+
+$('#increase-font').click(function() {
+    changeFontSize('aumentar');
+});
+
+$('#decrease-font').click(function() {
+    changeFontSize('diminuir');
+});
+
+
+//  INCREASE AND DECREASE FONT > END
 
 
 
@@ -226,9 +256,9 @@ $(function() {
 
 // SECTION > THREE > BEGINNING
 
-$(document).ready(function() {
-    $('.cell').mask('(00) 00000-0000'); 
-});
+
+$('.cell').mask('(00) 00000-0000'); 
+
 
 // Seleciona o elemento com ID "name" do documento HTML
 const inputName = document.querySelector("#name");
@@ -319,6 +349,7 @@ if (isValid) {
         document.getElementById('formSent').textContent = '';
     }, 3000);
 }
+});
 });
 
 // SECTION > THREE > END
