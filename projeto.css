@@ -447,60 +447,25 @@ main .section_two {
   width: 100%;
 }
 
-.section_three input, textarea {
-  color: var(--font-color);
-  border: none;
-  border-radius: 15px;
-  font-size: 2rem;
-  width: 100%;
-  padding: 10px 12px;
-  background: linear-gradient(var(--back-color), var(--back-color)) padding-box, var(--blue-gradient-color) border-box;
-  border: 1px solid transparent;
-  resize: none;
-}
-
-form div {
-  position: relative;
-}
-
-form label {
-  text-transform: uppercase;
-  font-size: 20px;
-  font-weight: 700;
-  color: #9d9d9d;
-  position: absolute;
-  top: 20px;
-  left: 10px;
-  user-select: none;
-  pointer-events: none;
-  transition: 0.5s;
-}
-.section_three input:focus ~ label, textarea:focus ~ label,
-.section_three input:not(:placeholder-shown) ~ label, textarea:not(:placeholder-shown) ~ label {
-  font-size: 12px;
-  top: 7px;
-}
-
-
-.section_three input, textarea {
-  color: var(--font-color);
-  border: none;
-  border-radius: 15px;
-  font-size: 2rem;
-  width: 100%;
-  padding: 10px 12px;
-  background: linear-gradient(var(--back-color), var(--back-color)) padding-box, var(--blue-gradient-color) border-box;
-  border: 1px solid transparent;
-  resize: none;
-}
-
-form {
+.section_three form {
   width: 80%;
 }
 
 form .box_input {
   position: relative;
   margin: 15px 0;
+}
+
+.box_input input, .box_input textarea, #submit {
+  color: var(--font-color);
+  border: none;
+  border-radius: 15px;
+  font-size: 2rem;
+  width: 100%;
+  padding: 10px 12px;
+  background: linear-gradient(var(--back-color), var(--back-color)) padding-box, var(--blue-gradient-color) border-box;
+  border: 1px solid transparent;
+  resize: none;
 }
 
 .box_input label {
@@ -525,6 +490,8 @@ form .box_input {
   transition: all 0.5s;
 }
 
+  /* SECTION > THREE > SENT/ERROR MESSAGE > BEGINNING */
+
 .error {
   display: flex;
   justify-content: start;
@@ -541,12 +508,16 @@ form .box_input {
   color:#08a84b
 }
 
+  /* SECTION > THREE > SENT/ERROR MESSAGE > END */
+
 #submit {
   cursor: pointer;
 }
   /* SECTION > THREE > END */
 
 /* MAIN > END */
+
+
 
 
 
