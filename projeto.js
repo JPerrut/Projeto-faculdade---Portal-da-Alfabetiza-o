@@ -1,75 +1,89 @@
-// SCROLLING LINKS . BEGINNING
+// SCROLLING LINKS > BEGINNING
 
 $(document).ready(function() {
-    // Espera o DOM estar completamente carregado antes de executar o código
+// Espera o DOM estar completamente carregado antes de executar o código
+
+    const header = $('header'); 
+    // Seleciona o elemento <header> e o armazena na constante
+
+    let ignoreScroll = false; 
+    // Variável para controlar se a rolagem deve ser ignorada
+
     
-      const header = $('header');
-      // Seleciona o elemento <header> e o armazena na constante 
+    const closeMenu = () => {
+    // Função para fechar o menu mobile
+
+        $('.menu-button').removeClass('active'); 
+        // Remove a classe 'active' do botão do menu
+
+        $('#menu').removeClass('show'); 
+        // Remove a classe 'show' do menu, ocultando-o
+    };
+
     
-      let ignoreScroll = false;
-      // Variável para controlar se a rolagem deve ser ignorada
-    
-    
-      const smoothNavigateTo = target => {
-      // Função que navega suavemente para o destino da âncora
-    
+    const smoothNavigateTo = target => {
+    // Função para navegar suavemente até um alvo específico
+
+        closeMenu(); 
+        // Fecha o menu antes de navegar
+
         ignoreScroll = true; 
-        // Ignora a rolagem durante a navegação
-    
+        // Ignora rolagem durante a animação
+
         header.addClass('hidden'); 
-        // Oculta o menu imediatamente
-    
-    
+        // Oculta o cabeçalho
+
+        
         $('html, body').animate({
-        // Anima a rolagem da página para o destino especificado
-    
-          scrollTop: $(target).offset().top 
-          // Define a posição do destino
-    
+        // Anima a rolagem da página até a posição do alvo
+
+            scrollTop: $(target).offset().top 
+            // Define a posição de rolagem
+
         }, 800, () => setTimeout(() => ignoreScroll = false, 300)); 
-        // Permite rolagem novamente após a animação
-      }
+        // Permite rolagem novamente após 300ms
+    };
+
     
-    
-      $('.click-disappear').on('click', function(event) {
-      // Adiciona evento de clique para todos os links que devem ocultar o menu
-    
+    $('.click-disappear').on('click', function(event) {
+    // Adiciona um evento de clique a todos os links que devem ocultar o menu
+
         event.preventDefault(); 
         // Impede o comportamento padrão do link
-    
+
         smoothNavigateTo(this.getAttribute('href')); 
         // Chama a função de navegação suave
-      });
+    });
+
+    let lastScrollTop = 0; 
+    // Variável para armazenar a última posição do scroll
     
-     
-      let lastScrollTop = 0;
-       // Variável para armazenar a última posição do scroll
-    
-      $(window).on('scroll', function() {
-      // Evento de scroll para mostrar ou ocultar o cabeçalho
-    
+    $(window).on('scroll', function() {
+    // Evento de scroll para mostrar ou ocultar o cabeçalho
+
         if (ignoreScroll) return; 
         // Ignora a rolagem se estiver em navegação suave
-    
+
         const scrollTop = $(this).scrollTop(); 
         // Obtém a posição atual do scroll
-        
-        header.toggleClass('hidden', scrollTop > lastScrollTop);
+
+        header.toggleClass('hidden', scrollTop > lastScrollTop); 
         // Adiciona ou remove a classe 'hidden' com base na direção do scroll
-        
+
         lastScrollTop = scrollTop; 
         // Atualiza a última posição do scroll
-      });
- 
-    
+    });
 
 // SCROLLING LINKS > END
 
 
 //  INCREASE AND DECREASE FONT > BEGINNING
 
-const maxFontSize = 12; // Tamanho máximo
-const minFontSize = 8; // Tamanho mínimo
+const maxFontSize = 12; 
+// Tamanho máximo
+
+const minFontSize = 8; 
+// Tamanho mínimo
 
 function changeFontSize(action) {
     $('html, body').each(function() {
@@ -291,65 +305,116 @@ function checkChar(e) {
 }
 
 document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+// Adiciona um evento ao formulário quando ele é submetido
 
+    e.preventDefault(); 
+    // Impede o envio padrão do formulário
+    
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const cell = document.getElementById('cell').value;
+    const message = document.getElementById('message').value; 
+    // Obtém os valores dos campos do formulário
 
-const name = document.getElementById('name').value;
-const email = document.getElementById('email').value;
-const cell = document.getElementById('cell').value;
-const message = document.getElementById('message').value; 
+    let isValid = true; 
+    // Variável para verificar se o formulário é válido
 
-let isValid = true;
+    // NAME FIELD VALIDATION > BEGINNING
 
-if(name.length < 3) {document.getElementById('nameError').textContent = 'Por favor, preencha seu nome.';
-    isValid = false;
-} else {
-    document.getElementById('nameError').textContent = '';
-}
+    if (name.length < 3) {
+        document.getElementById('nameError').textContent = 'Por favor, preencha seu nome.'; 
+        // Mensagem de erro
 
-const emailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w*)*\.\w+([-.]\w+)*$/;
-if(email === '') {
-    document.getElementById('emailError').textContent = 'Por favor, preencha seu email.';
-    isValid = false;
-} 
-else if (!emailRegex.test(email)) {
-    document.getElementById('emailError').textContent = 'Por favor, insira um email válido.';
-    isValid = false;
-}
-else {
-    document.getElementById('emailError').textContent = '';
-}
+        isValid = false; 
+        // Marca o formulário como inválido
+    } else {
+        document.getElementById('nameError').textContent = ''; 
+        // Limpa a mensagem de erro
+    }
 
+    // NAME FIELD VALIDATION > END
 
-if (cell === '') {
-    document.getElementById('cellError').textContent = 'Por favor, preencha com o número do seu celular.';
-    isValid = false;
-}
-else if (cell.length < 15) {
-    document.getElementById('cellError').textContent = 'Por favor, insira um número válido'
-    isValid = false;
-} 
-else {
-    document.getElementById('cellError').textContent = '';
-}
+    // EMAIL FIELD VALIDATION > BEGINNING
 
-// Validação do campo Mensagem
-if (message === '') {
-    document.getElementById('messageError').textContent = 'Por favor, preencha a mensagem.';
-    isValid = false;
-} else {
-    document.getElementById('messageError').textContent = '';
-}
+    const emailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w*)*\.\w+([-.]\w+)*$/; 
+    // Regex para validação de email
 
-// Se todos os campos forem válidos, exibe a mensagem de sucesso e reseta o formulário
-if (isValid) {
-    document.getElementById('contactForm').reset(); // Limpa o formulário
-    document.getElementById('formSent').textContent = 'Formulário enviado com sucesso!'
-    setTimeout(function() {
-        document.getElementById('formSent').textContent = '';
-    }, 3000);
-}
+    if (email === '') {
+        document.getElementById('emailError').textContent = 'Por favor, preencha seu email.'; 
+        // Mensagem de erro
+
+        isValid = false; 
+        // Marca o formulário como inválido
+
+    } else if (!emailRegex.test(email)) {
+        document.getElementById('emailError').textContent = 'Por favor, insira um email válido.'; 
+        // Mensagem de erro
+
+        isValid = false; 
+        // Marca o formulário como inválido
+
+    } else {
+        document.getElementById('emailError').textContent = ''; 
+        // Limpa a mensagem de erro
+    }
+
+    // EMAIL FIELD VALIDATION > END
+
+    // CELL FIELD VALIDATION > BEGINNING
+
+    if (cell === '') {
+        document.getElementById('cellError').textContent = 'Por favor, preencha com o número do seu celular.'; 
+        // Mensagem de erro
+
+        isValid = false; 
+        // Marca o formulário como inválido
+
+    } else if (cell.length < 15) {
+        document.getElementById('cellError').textContent = 'Por favor, insira um número válido'; 
+        // Mensagem de erro
+
+        isValid = false; 
+        // Marca o formulário como inválido
+
+    } else {
+        document.getElementById('cellError').textContent = ''; 
+        // Limpa a mensagem de erro
+    }
+
+    // CELL FIELD VALIDATION > END
+
+    // VALIDATION OF THE MESSAGE FIELD > BEGINNING
+
+    if (message === '') {
+        document.getElementById('messageError').textContent = 'Por favor, preencha a mensagem.'; 
+        // Mensagem de erro
+
+        isValid = false; 
+        // Marca o formulário como inválido
+
+    } else {
+        document.getElementById('messageError').textContent = ''; 
+        // Limpa a mensagem de erro
+    }
+
+    // VALIDATION OF THE MESSAGE FIELD > END
+
+    if (isValid) {
+    // Se todos os campos forem válidos, exibe a mensagem de sucesso e reseta o formulário
+
+        document.getElementById('contactForm').reset(); 
+        // Reseta o formulário
+
+        document.getElementById('formSent').textContent = 'Formulário enviado com sucesso!'; 
+        // Mensagem de sucesso
+        setTimeout(function() {
+            // Remove a mensagem de sucesso após 3 segundos
+            document.getElementById('formSent').textContent = ''; 
+            // Limpa a mensagem de sucesso
+        }, 3000);
+    }
 });
+
 });
 
 // SECTION > THREE > END
