@@ -31,17 +31,16 @@
 
 
                 <ul id="menu" class="menu">
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#sobre">Sobre</a></li>
-                    <li><a href="#contato">Contato</a></li>
+                    <li><a href="#move-start"   class="click-disappear">Inicio</a></li>
+                    <li><a href="#move-about"   class="click-disappear">Sobre</a></li>
+                    <li><a href="#move-contact" class="click-disappear">Contato</a></li>
                     <li class="division_bar"></li>
                     <li class="perfil-login">
                         <div><a href="#">Logar</a></div>
                         <div><a href="#">Cadastrar</a></div>
                     </li> <!-- class="perfil-login" FIM -->
                 </ul> <!-- class="menu" FIM -->
-
-                <button class="menu-button"></button>
+                <button class="menu-button" ></button>
             </nav> <!-- class="nav-menu" FIM -->
         </div> <!-- class="container" FIM -->
     </header>
@@ -49,7 +48,7 @@
     <main>
         <!-- class="container" > BEGINNING -->
         <div class="container">
-            <h1 class="title_main">portal da alfabetização</h1>
+            <h1 class="title_main" id="move-start">portal da alfabetização</h1>
 
             <!-- SECTION_ONE > BEGINNING -->
             <section>
@@ -66,7 +65,7 @@
             </section>
             <!-- SECTION_ONE > END -->
             
-            <h1 class="title_main">Sobre nós</h1>
+            <h1 class="title_main" id="move-about">Sobre nós</h1>
 
             <!-- SECTION_TWO > BEGINNING -->
             <section class="section_two">
@@ -83,7 +82,7 @@
             </section>
             <!-- SECTION_TWO > END -->
 
-            <h1 class="title_main">Contate-nos</h1>
+            <h1 class="title_main" id="move-contact">Contate-nos</h1>
 
             <!-- SECTION_THREE > BEGINNING -->
             <section class="section_three">
@@ -127,44 +126,54 @@
     </main>
     <footer>
         <div class="container">
-            <div class="social-link-icons">
-
-                <div class="sli-container">
-                    <img src="images/footer/facebook-icon.png"  alt="" class="icons">
-                    <a href="https://www.facebook.com/PortalDaAlfabetização" class="text-social-link-icons">https://www.facebook.com/PortalDaAlfabetização</a>
-                </div>
-
-                <div class="sli-container">
-                    <img src="images/footer/instagram-icon.png" alt="" class="icons">
-                    <a href="https://www.instagram.com/PortalDaAlfabetização" class="text-social-link-icons">https://www.instagram.com/PortalDaAlfabetização</a>
-                </div>
-
-                <div class="sli-container">
-                    <img src="images/footer/linkedin-icon.png"  alt="" class="icons">
-                    <a href="https://www.linkedin.com/in/PortalDaAlfabetização" class="text-social-link-icons">https://www.linkedin.com/in/PortalDaAlfabetização</a>
-                </div>
-
-                <div class="sli-container">
-                    <img src="images/footer/whatsapp-icon.png"   alt="" class="icons">
-                    <a class="text-social-link-icons">(+55) 21 96426-6288</a>
-                </div>
-
-            </div>
-
             <div class="credit-creators">
 
-                <h3 class="created-by">Project created and developed by</h3>
-                <div class="credit-creators-list">
-                    <ul>
-                        <li>João Perrur    </li>
-                        <li>Anderson       </li>
-                        <li>Pedro          </li>
-                    </ul>
-                    <ul>
-                        <li>Mariana Herbst </li>
-                        <li>Taiane         </li>
-                    </ul>
+                <div class="social-link-icons">
+
+                    <h3 class="title-footer">Siga-nos</h3>
+
+                    <div class="social-area-container">    
+
+                        <div class="sli-container">
+                            <a href="https://www.facebook.com/PortalDaAlfabetização" target="_blank">
+                                <img src="images/footer/facebook-icon.png"  alt="Facebook" class="icons">
+                                <div class="text-social-link-icons">Facebook</div>
+                            </a>
+                        </div>
+
+                        <div class="sli-container">
+                            <a href="https://www.instagram.com/PortalDaAlfabetização" target="_blank">
+                                <img src="images/footer/instagram-icon.png" alt="Instagram" class="icons">
+                                <div class="text-social-link-icons">Instagram</div>
+                            </a>
+                        </div>
+
+                        <div class="sli-container">
+                            <a href="https://www.linkedin.com/in/PortalDaAlfabetização" target="_blank">
+                                <img src="images/footer/linkedin-icon.png"  alt="Linkedin" class="icons">
+                                <div class="text-social-link-icons">Linkedin</div>
+                            </a>
+                        </div>
+                    </div>
+                    
                 </div>
+
+                <div class="social-link-icons"> 
+                    <h3 class="title-footer">Project created and developed by</h3>
+
+                    <div class="credit-creators-list">
+                        <ul>
+                            <li>João Perrut    </li>
+                            <li>Anderson       </li>
+                            <li>Pedro          </li>
+                        </ul>
+                        <ul>
+                            <li>Mariana Herbst </li>
+                            <li>Taiane         </li>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
 
         </div>

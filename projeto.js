@@ -1,3 +1,73 @@
+// SCROLLING LINKS . BEGINNING
+
+$(document).ready(function() {
+    // Espera o DOM estar completamente carregado antes de executar o código
+    
+      const header = $('header');
+      // Seleciona o elemento <header> e o armazena na constante 
+    
+      let ignoreScroll = false;
+      // Variável para controlar se a rolagem deve ser ignorada
+    
+    
+      const smoothNavigateTo = target => {
+      // Função que navega suavemente para o destino da âncora
+    
+        ignoreScroll = true; 
+        // Ignora a rolagem durante a navegação
+    
+        header.addClass('hidden'); 
+        // Oculta o menu imediatamente
+    
+    
+        $('html, body').animate({
+        // Anima a rolagem da página para o destino especificado
+    
+          scrollTop: $(target).offset().top 
+          // Define a posição do destino
+    
+        }, 800, () => setTimeout(() => ignoreScroll = false, 300)); 
+        // Permite rolagem novamente após a animação
+      }
+    
+    
+      $('.click-disappear').on('click', function(event) {
+      // Adiciona evento de clique para todos os links que devem ocultar o menu
+    
+        event.preventDefault(); 
+        // Impede o comportamento padrão do link
+    
+        smoothNavigateTo(this.getAttribute('href')); 
+        // Chama a função de navegação suave
+      });
+    
+     
+      let lastScrollTop = 0;
+       // Variável para armazenar a última posição do scroll
+    
+      $(window).on('scroll', function() {
+      // Evento de scroll para mostrar ou ocultar o cabeçalho
+    
+        if (ignoreScroll) return; 
+        // Ignora a rolagem se estiver em navegação suave
+    
+        const scrollTop = $(this).scrollTop(); 
+        // Obtém a posição atual do scroll
+        
+        header.toggleClass('hidden', scrollTop > lastScrollTop);
+        // Adiciona ou remove a classe 'hidden' com base na direção do scroll
+        
+        lastScrollTop = scrollTop; 
+        // Atualiza a última posição do scroll
+      });
+    });
+    
+
+// SCROLLING LINKS > END
+
+
+
+
 // HEADER > BEGINNING
 
 const btnMenu = document.querySelector('.menu-button');
