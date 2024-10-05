@@ -243,7 +243,6 @@ if (message === '') {
 
 // Se todos os campos forem válidos, exibe a mensagem de sucesso e reseta o formulário
 if (isValid) {
-    alert('Formulário enviado com sucesso!');
     document.getElementById('contactForm').reset(); // Limpa o formulário
     document.getElementById('formSent').textContent = 'Formulário enviado com sucesso!'
     setTimeout(function() {
