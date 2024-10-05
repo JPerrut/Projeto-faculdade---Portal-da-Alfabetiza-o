@@ -396,7 +396,7 @@ main .section_two {
   position: relative;
   overflow: hidden;
   background: linear-gradient(var(--back-color), var(--back-color)) padding-box, var(--blue-gradient-color) border-box;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
 }
 
 .next {
@@ -578,7 +578,6 @@ form .box_input {
     grid-column: 1/3;
     position: relative;
     overflow: hidden;
-    border: #666 solid 1px;
   }
   
   

@@ -51,12 +51,24 @@ document.addEventListener('click', function(e) {
 
     // CHECK THE SCREEN SIZE AND TOGGLE THE MENU > BEGINNING
 
-window.addEventListener('resize', function() {
-    if (this.window.innerWidth > 768) {
-        menu.classList.remove('show');
-        btnMenu.classList.remove('active')
-    }
-})
+function updateSliderImages() {
+    if (this.window.innerWidth < 660) {
+
+        this.document.querySelector('.slider1').src = "images/main_section_two/slideshow-mobile/slide_1_mobile.png";
+        this.document.querySelector('.slider2').src = "images/main_section_two/slideshow-mobile/slide_2_mobile.png";
+        this.document.querySelector('.slider3').src = "images/main_section_two/slideshow-mobile/slide_3_mobile.png";
+        this.document.querySelector('.slider4').src = "images/main_section_two/slideshow-mobile/slide_4_mobile.png";
+    } else if (this.window.innerWidth > 660) {
+        this.document.querySelector('.slider1').src = "images/main_section_two/slideshow-desktop/slide_1_desktop.png";
+        this.document.querySelector('.slider2').src = "images/main_section_two/slideshow-desktop/slide_2_desktop.png";
+        this.document.querySelector('.slider3').src = "images/main_section_two/slideshow-desktop/slide_3_desktop.png";
+        this.document.querySelector('.slider4').src = "images/main_section_two/slideshow-desktop/slide_4_desktop.png";
+    }                                                           
+}
+
+updateSliderImages();
+
+window.addEventListener('resize', updateSliderImages);
 
     // CHECK THE SCREEN SIZE AND TOGGLE THE MENU > END  
 
