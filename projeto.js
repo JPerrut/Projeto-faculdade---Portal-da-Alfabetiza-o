@@ -407,10 +407,13 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
 
         document.getElementById('formSent').textContent = 'Formulário enviado com sucesso!'; 
         // Mensagem de sucesso
+
         setTimeout(function() {
             // Remove a mensagem de sucesso após 3 segundos
+
             document.getElementById('formSent').textContent = ''; 
             // Limpa a mensagem de sucesso
+            
         }, 3000);
     }
 });
