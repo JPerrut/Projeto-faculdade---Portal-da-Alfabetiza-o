@@ -95,7 +95,7 @@ function changeFontSize(action) {
         }
     });
     ignoreScroll = true;
-    setTimeout(() => ignoreScroll = false, 300);
+    setTimeout(() => ignoreScroll = false, 1000);
 }
 
 $('#increase-font').click(function() {
@@ -135,6 +135,7 @@ btnMenu.addEventListener('click', function(e) {
 
 iconDL.addEventListener('click', function() {
     html.classList.toggle("light")
+    updateSliderImages();
     
     if (iconDL.classList.contains('fa-moon')) {
         iconDL.classList.remove('fa-moon');
@@ -167,18 +168,38 @@ document.addEventListener('click', function(e) {
 
 function updateSliderImages() {
     if (this.window.innerWidth < 660) {
+        if (html.classList.contains('light')) {
+            this.document.querySelector('.slider1').src = "images/main_section_two/slideshow-mobile/slide_1_mobile_white.png";
+            this.document.querySelector('.slider2').src = "images/main_section_two/slideshow-mobile/slide_2_mobile_white.png";
+            this.document.querySelector('.slider3').src = "images/main_section_two/slideshow-mobile/slide_3_mobile_white.png";
+            this.document.querySelector('.slider4').src = "images/main_section_two/slideshow-mobile/slide_4_mobile_white.png";
+        } else {
+            this.document.querySelector('.slider1').src = "images/main_section_two/slideshow-mobile/slide_1_mobile_black.png";
+            this.document.querySelector('.slider2').src = "images/main_section_two/slideshow-mobile/slide_2_mobile_black.png";
+            this.document.querySelector('.slider3').src = "images/main_section_two/slideshow-mobile/slide_3_mobile_black.png";
+            this.document.querySelector('.slider4').src = "images/main_section_two/slideshow-mobile/slide_4_mobile_black.png";
+        }
 
-        this.document.querySelector('.slider1').src = "images/main_section_two/slideshow-mobile/slide_1_mobile.png";
-        this.document.querySelector('.slider2').src = "images/main_section_two/slideshow-mobile/slide_2_mobile.png";
-        this.document.querySelector('.slider3').src = "images/main_section_two/slideshow-mobile/slide_3_mobile.png";
-        this.document.querySelector('.slider4').src = "images/main_section_two/slideshow-mobile/slide_4_mobile.png";
     } else if (this.window.innerWidth > 660) {
-        this.document.querySelector('.slider1').src = "images/main_section_two/slideshow-desktop/slide_1_desktop.png";
-        this.document.querySelector('.slider2').src = "images/main_section_two/slideshow-desktop/slide_2_desktop.png";
-        this.document.querySelector('.slider3').src = "images/main_section_two/slideshow-desktop/slide_3_desktop.png";
-        this.document.querySelector('.slider4').src = "images/main_section_two/slideshow-desktop/slide_4_desktop.png";
-    }                                                           
+
+         if (html.classList.contains('light')) {
+            this.document.querySelector('.slider1').src = "images/main_section_two/slideshow-desktop/slide_1_desktop_white.png";
+            this.document.querySelector('.slider2').src = "images/main_section_two/slideshow-desktop/slide_2_desktop_white.png";
+            this.document.querySelector('.slider3').src = "images/main_section_two/slideshow-desktop/slide_3_desktop_white.png";
+            this.document.querySelector('.slider4').src = "images/main_section_two/slideshow-desktop/slide_4_desktop_white.png";
+         }
+         else {
+            this.document.querySelector('.slider1').src = "images/main_section_two/slideshow-desktop/slide_1_desktop_black.png";
+            this.document.querySelector('.slider2').src = "images/main_section_two/slideshow-desktop/slide_2_desktop_black.png";
+            this.document.querySelector('.slider3').src = "images/main_section_two/slideshow-desktop/slide_3_desktop_black.png";
+            this.document.querySelector('.slider4').src = "images/main_section_two/slideshow-desktop/slide_4_desktop_black.png";
+         }
+
+    }
 }
+
+window.addEventListener('resize', updateSliderImages);
+document.addEventListener('DOMContentLoaded', updateSliderImages);
 
 updateSliderImages();
 

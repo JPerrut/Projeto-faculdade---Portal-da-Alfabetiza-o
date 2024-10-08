@@ -17,8 +17,8 @@
   --font-color: rgb(219, 219, 219);
   --container-border: rgba(0, 0, 0, 0.3);
 
-  --blue-gradient-color: linear-gradient(to right, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
-  --text-blue-gradient-color: linear-gradient(to bottom, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%) border-box;
+  --blue-gradient-color: linear-gradient(to right, var(--font-color) 20%, rgba(0,212,255,1) 100%);
+  --text-blue-gradient-color: linear-gradient(to bottom, var(--font-color) 20%, rgba(0,212,255,1) 100%) border-box;
 
   --img-section-one: url(/images/main_section_one/section_one_dark.png);
 
@@ -34,8 +34,8 @@
   --font-color: rgb(12, 12, 12);
   --container-border: rgba(219, 219, 219, 1);
 
-  --blue-gradient-color: linear-gradient(to right, rgba(0,212,255,1) 35%, rgba(9,9,121,1) 100%);
-  --text-blue-gradient-color: linear-gradient(to bottom, rgba(0,212,255,1) 35%, rgba(9,9,121,1) 100%) border-box;
+  --blue-gradient-color: linear-gradient(to right, rgba(0,212,255,1) 35%, var(--font-color) 80%);
+  --text-blue-gradient-color: linear-gradient(to bottom, rgba(0,212,255,1) 35%, var(--font-color) 80%) border-box;
 
   --img-section-one: url(/images/main_section_one/section_one_white.png);
 
@@ -261,19 +261,30 @@ main .container {
   /* MAIN > TITLE > BEGINNING */
 
 
-main .title_main {
+main .container-title-border-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 60px;
+  padding: 20px;
+}
+.container-title-border-main .title_main {
   text-transform: uppercase;
   text-align: center;
   font-size: 6rem;
-  padding: 20px;
-  margin: 60px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  border-radius: 40px;
   background: var(--text-blue-gradient-color);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: all 1s;
+}
+
+.container-title-border-main .border-title-main {
+  width: 50%;
+  height: 3px;
+  background: var(--font-color);
+  border-radius: 30px;
+  transition: all 0.3s ease-in-out;
 }
 
   /* MAIN > TITLE > END */
@@ -723,10 +734,13 @@ section .image_main {
 
 /* MAIN > SECTION_ONE > BEGINNING */
 
-main .title_main {
+.container-title-border-main {
+  width: 95%;
+}
+
+.container-title-border-main .title_main {
   font-size: 4rem;
   transition: all 1s;
-  width: 90%;
 }
 
 section {
