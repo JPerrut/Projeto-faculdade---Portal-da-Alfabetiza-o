@@ -4,7 +4,6 @@
 
 main .section_two {
     width: 100%;
-    align-items: center;
 }
   
     /* ===================================
@@ -62,7 +61,6 @@ main .section_two {
     width: 100px;
     grid-row: 1;
     grid-column: 1;
-    justify-self: center;
     align-self: center;
 }
 

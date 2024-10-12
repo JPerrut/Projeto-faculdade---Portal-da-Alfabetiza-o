@@ -72,7 +72,7 @@ iconDL.on('click', function() {
 
 // DARK AND WHITE MODE > END
 
-$('.container_section_four').hide();
+$('.container_section_five').hide();
 
 // usuario logado
 let menu_logado = $('.menu-logado');
