@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="/css_index_html/menu.css">
     <link rel="stylesheet" href="/css_index_html/section_1_one.css">
     <link rel="stylesheet" href="/css_index_html/section_2_two.css">
+    <link rel="stylesheet" href="/css_index_html/section_3_three.css">
+    <link rel="stylesheet" href="/css_index_html/section_4_four.css">
     <link rel="stylesheet" href="/css_index_html/section_5_five.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -129,24 +131,32 @@
 
         <!-- =================
              SECTION_TWO > END 
-             ================= -->'
+             ================= -->
 
             <div class="container-title-border-main">
                 <h1 class="title_main" id="move-about">Sobre Nós</h1>
                 <div class="border-title-main"></div>
             </div>
+
+        <!-- =========================
+             SECTION_THREE > BEGINNING 
+             ========================= -->
                 
-            <section class="arroz">
-                <!-- class="box_text_main" > BEGINNING -->
-                <div class="box_text_main1">
-                    <p class="box_text_main_paragraph">Somos cinco empreendedores dedicados a ajudar trabalhadores mais velhos que ainda enfrentam o analfabetismo, apesar de estarem empregados. A ideia surgiu quando um de nós percebeu essa necessidade em sua própria empresa.</p>
-                    <p class="box_text_main_paragraph">Conectamos empresas que precisam alfabetizar seus funcionários com a prefeitura local, agilizando o acesso a programas educacionais. Nosso propósito é melhorar a qualidade de vida desses trabalhadores e apoiar empresas no desenvolvimento de seus colaboradores.</p>
-                    <p class="box_text_main_paragraph">Juntos, estamos construindo um futuro mais justo e inclusivo, onde a educação básica chega a todos, independentemente da idade ou circunstância.</p>
-                </div>
+            <section class="section_three">
+
+                <div class="box_text_main2">
+                    <p class="box_text_main_paragraph">Somos cinco empreendedores comprometidos em ajudar trabalhadores mais velhos que ainda são analfabetos, uma ideia que surgiu ao identificar essa necessidade dentro de uma de nossas empresas.</p>
+                    <p class="box_text_main_paragraph">Conectamos empresas que precisam alfabetizar seus funcionários com a prefeitura, facilitando o acesso a programas educacionais. Nosso objetivo é melhorar a vida dos trabalhadores e apoiar o desenvolvimento dos colaboradores.</p>
+                    <p class="box_text_main_paragraph">Estamos construindo um futuro mais justo e inclusivo, garantindo que a educação básica chegue a todos, independentemente da idade ou situação.</p>
+                </div> <!-- class="box_text_main" > END -->
+                
                 <img src="/images/main_section_one/sobre.png" alt="">
 
-                <!-- class="box_text_main" > END -->
-            </section>
+            </section> <!-- class="section_three" > END -->
+
+        <!-- ===================
+             SECTION_THREE > END 
+             =================== -->
                 
 
             <div class="container-title-border-main">
@@ -154,43 +164,43 @@
                 <div class="border-title-main"></div>
             </div>
 
-
-            <!-- SECTION_THREE > BEGINNING -->
-            <section class="section_three">
-
-                <!-- FORM > BEGINNING -->
+        <!-- ========================
+             SECTION_FOUR > BEGINNING 
+             ======================== -->
+            <section class="section_four">
                 <form action="#" method="post" id="contactForm" novalidate>
                     
                     <div class="box_input">
                         <input type="text" id="name" name="name" placeholder="" maxlength="60">
                         <label>Nome:</label>
                         <span id="nameError" class="error"></span>
-                    </div>
+                    </div> <!-- class="box_input" > END -->
 
                     <div class="box_input">
                         <input type="email" id="email" name="email" placeholder="" >
                         <label>Email:</label>
                         <span id="emailError" class="error"></span>
-                    </div>
+                    </div> <!-- class="box_input" > END -->
 
                     <div class="box_input">
                         <input type="text" id="cell" class="cell" name="cell" placeholder="" >
                         <label>Celular:</label>
                         <span id="cellError" class="error"></span>
-                    </div>
+                    </div> <!-- class="box_input" > END -->
+
                     <div class="box_input">
                         <textarea id="message" name="message" placeholder="" rows="4" cols="50" maxlength="300"></textarea>
                         <label>Mensagem:</label>
                         <span id="messageError" class="error"></span>
-                    </div>
+                    </div> <!-- class="box_input" > END -->
 
                     <input type="submit" value="Enviar" id="submit" name="submit">
                     <span id="formSent" class="formSent"></span>
-                </form>
-                <!-- FORM > END -->
-
+                </form> <!-- id="contactForm" > END -->
             </section>
-            <!-- SECTION_THREE > END -->
+        <!-- ==================
+             SECTION_FOUR > END 
+             ================== -->
 
         </div> <!-- class="container" > END -->
 
@@ -339,17 +349,13 @@
 
     <footer>
         <h2>Portal da alfabetização</h2>
-        
-        <nav>
-          <ul>
-            <li>
-                <a href="#move-start"   class="click-disappear">Inicio</a></li>
-                <li><a href="#move-differential"   class="click-disappear">Diferencial</a></li>
-                <li><a href="#move-about"   class="click-disappear">Sobre</a></li>
-                <li><a href="#move-contact" class="click-disappear">Contato</a></li>
-          </ul>
-        </nav>
-      
+        <ul class="menu-devs">
+            <li><a href="#move-start"   class="click-disappear">Inicio</a></li>
+            <li><a href="#move-differential"   class="click-disappear">Diferencial</a></li>
+            <li><a href="#move-about"   class="click-disappear">Sobre</a></li>
+            <li><a href="#move-contact" class="click-disappear">Contato</a></li>
+        </ul>
+
         <div class="devs">
             <h3>Desenvolvedores</h3>
 
@@ -362,7 +368,6 @@
       
         <p>&copy; 2024 Todos os direitos reservados</p>
       </footer>
-      
       
 </body>
 </html>

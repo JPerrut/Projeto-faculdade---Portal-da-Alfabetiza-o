@@ -2,7 +2,6 @@
    SECTION_FIVE > FORMFUNC > BEGINNING
    =================================== */
 
-
 .section_five .formFunc {
   padding: 20px;
   margin: 10px;
@@ -32,6 +31,7 @@
      FORMFUNC > TITLE > END
      ====================== */
 
+
   /* ==================================
      FORMFUNC > INPUT_GROUP > BEGINNING
      ================================== */
@@ -45,44 +45,58 @@
   /* ============================
      FORMFUNC > INPUT_GROUP > END
      ============================ */
+
+
+  /* ======================================
+     FORMFUNC > CONTAINER_INPUT > BEGINNING
+     ====================================== */
   
 .container_input {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 13px;
-    text-align: left;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 13px;
+  text-align: left;
+  width: 100%;
   }
   
 .container_input label {
-    font-size: 1.5rem;
-    color: var(--font-color);;
+  font-size: 1.5rem;
+  color: var(--font-color);;
 }
   
 .container_input input, .container_input select {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1.6rem;
-    border: none;
-    background: rgba(143, 142, 142, 0.3);
-    border-radius: 15px;
-    font-size: 1.6rem;
-    color: var(--font-color);
-    font-weight: 800;
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1.6rem;
+  border: none;
+  background: rgba(143, 142, 142, 0.3);
+  border-radius: 15px;
+  font-size: 1.6rem;
+  color: var(--font-color);
+  font-weight: 800;
 }
-  
+ 
+select option {
+  font-size: 2rem;
+  background-color: var(--back-color);
+}
+
 input[readonly] {
     background: rgba(143, 142, 142, 0.6);
     cursor: not-allowed;
 }
-  
-select option {
-    font-size: 2rem;
-    background-color: var(--back-color);
-}
+
+  /* ================================
+     FORMFUNC > CONTAINER_INPUT > END
+     ================================ */
+
+
+  /* ==============================
+     FORMFUNC > BUTTONS > BEGINNING
+     ============================== */
   
 .buttons {
     display: flex;
@@ -103,6 +117,15 @@ select option {
     color: var(--font-color);
 }
 
+  /* ========================
+     FORMFUNC > BUTTONS > END
+     ======================== */
+
+
+  /* ===============================
+     FORMFUNC > MESSAGES > BEGINNING
+     =============================== */
+
 #successMessage {
     display: flex;
     justify-content: start;
@@ -118,6 +141,10 @@ select option {
     margin-top: 5px;
     display: block;
 }
+
+  /* =========================
+     FORMFUNC > MESSAGES > END
+     ========================= */
 
 
 
