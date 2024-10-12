@@ -46,6 +46,6 @@ align-items: center;
 @media (max-width: 766px) {
     .box_text_main2 {
         min-width: 100%;
-        margin-bottom: 8px;
+        margin-bottom: 60px;
     }
 }

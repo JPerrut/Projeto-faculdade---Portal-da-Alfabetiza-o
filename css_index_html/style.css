@@ -160,74 +160,7 @@ main .section_two {
 
 }
 
-
-
-
 /* MAIN > END */
-
-/* FOOTER > BEGINNING */
-footer {
-  background-color: var(--header-color);
-  color: var(--font-color);
-  text-align: center;
-  padding: 20px;
-  box-shadow: 3px 4px 5px 4px rgba(0, 0, 0, 0.5);
-  margin-top: 15px;
-}
-
-footer h2 {
-  color: var(--text-blue-gradient-color);
-  margin-bottom: 15px;
-  font-size: 3rem;
-}
-
-footer nav ul {
-  list-style: none;
-  padding: 0;
-  display: inline-flex;
-  gap: 15px;
-}
-
-footer nav ul li a {
-  color: var(--font-color);
-  text-decoration: none;
-  font-size: 2rem;
-}
-
-.devs h3{
-  margin-top: 15px;
-  font-size: 1.8rem;
-}
-
-.devs p {
-  margin-top: 12px;
-  display: inline-flex;
-  margin-left: 1.5rem;
-  font-size: 1.5rem;
-}
-
-.social-icons a {
-  margin: 0 10px;
-
-}
-
-footer p {
-  color: var(--font-color);
-  margin-top: 15px;
-  font-size: 1.5rem;
-}
-
-footer p a {
-  text-decoration: none;
-  font-size: 1.5rem;
-}
-
-
-
-
-/* FOOTER > END */
-
-
 
 
 /* usuario logado */
@@ -274,6 +207,7 @@ footer p a {
 .menu-logado .nome_empresa {
   display: flex;
   flex-direction: column;
+  text-align: center;
   justify-content: center;
   align-items: center;
   gap: 10px;

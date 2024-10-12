@@ -78,6 +78,17 @@
   color: var(--font-color);
   font-weight: 800;
 }
+
+.container_input select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-size: 16px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6"><path fill="black" d="M0 0 L5 6 L10 0 H0 Z"/></svg>'); /* Setinha para baixo */
+  background-repeat: no-repeat;
+  background-position: right 10px center; 
+  background-size: 10px 6px;
+}
  
 select option {
   font-size: 2rem;
