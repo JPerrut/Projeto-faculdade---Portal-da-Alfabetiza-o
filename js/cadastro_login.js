@@ -50,7 +50,7 @@ function handleFontSizeChange() {
     scrollTimeout = setTimeout(function () {
         ignoreScroll = false;
     }, 300);
-    // Define um timeout para reativar o comportamento de scroll após 3 milésimos de inatividade
+    // Define um timeout para reativar o comportamento de scroll após 300 milisegundos de inatividade
 }
 
 // ===============
