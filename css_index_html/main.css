@@ -1,27 +1,32 @@
-/* MAIN */
+/* ================
+   MAIN > BEGINNING 
+   ================ */
 
 main {
     padding: 0 0.5%;
   }
   
   
-  main .container {
+main .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
+}
   
-    /* MAIN > TITLE > BEGINNING */
+    /* ========================
+       MAIN > TITLE > BEGINNING 
+       ======================== */
   
   
-  main .container-title-border-main {
+main .container-title-border-main {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 60px;
     padding: 20px;
-  }
-  .container-title-border-main .title_main {
+}
+
+.container-title-border-main .title_main {
     text-transform: uppercase;
     text-align: center;
     font-size: 6rem;
@@ -30,19 +35,24 @@ main {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     transition: all 1s;
-  }
+}
   
-  .container-title-border-main .border-title-main {
+.container-title-border-main .border-title-main {
     width: 50%;
     height: 3px;
     background: var(--font-color);
     border-radius: 30px;
     transition: all 0.3s ease-in-out;
-  }
+}
   
-    /* MAIN > TITLE > END */
+    /* ==================
+       MAIN > TITLE > END
+       ================== */
   
-    /* MAIN > SECTION */
+
+    /* =======================
+       MAIN > SECTION > BEGINNING 
+       ========================== */
   
   main section {
     display: flex;
@@ -50,41 +60,36 @@ main {
     padding: 10px;
     width: 100%;
   }
+
+    /* =======================
+       MAIN > SECTION > BEGINNING 
+       ========================== */
   
-    /* MAIN > SECTION > END */
-  
-  
-  main .section_two {
-    width: 100%;
-    align-items: center;
-  
-  }
-  
-  /* MAIN > END */
+/* ==========
+   MAIN > END 
+   ========== */
   
   
   
   
   
   @media (max-width: 766px) {
-   
-   /* MAIN > SECTION_ONE > BEGINNING */
-   
+
+    section {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
    .container-title-border-main {
-     width: 95%;
+        width: 95%;
    }
    
    .container-title-border-main .title_main {
-     font-size: 4rem;
-     transition: all 1s;
+        font-size: 4rem;
+        transition: all 1s;
    }
-   
-   section {
-     flex-direction: column;
-     align-items: center;
-     width: 100%;
-    }
-   }
+}
   
   
   

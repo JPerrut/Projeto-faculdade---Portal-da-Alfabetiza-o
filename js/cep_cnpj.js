@@ -1,6 +1,6 @@
-// ------------------------------------
-// OBTENÇÃO DE DADOS DO CEP > BEGINNING
-// ------------------------------------
+// =======================================
+// OBTAINING DATA FROM THE CEP > BEGINNING
+// =======================================
 
 $('#cep').on('blur', function () {
     const cep = $(this).val().replace(/\D/g, '');
@@ -29,14 +29,14 @@ $('#cep').on('blur', function () {
     }
 });
 
-// ------------------------------------
-// OBTENÇÃO DE DADOS DO CEP > END
-// ------------------------------------
+// =================================
+// OBTAINING DATA FROM THE CEP > END
+// =================================
 
 
-// -----------------------------
-// VALIDAÇÃO DE CNPJ > BEGINNING
-// -----------------------------
+// ===========================
+// CNPJ VALIDATION > BEGINNING
+// ===========================
 
 function validateCNPJ(cnpj) {
     cnpj = cnpj.replace(/\D/g, '');
@@ -67,6 +67,6 @@ function validateCNPJ(cnpj) {
     return result === parseInt(digits.charAt(1));
 };
 
-// -----------------------
-// VALIDAÇÃO DE CNPJ > END
-// -----------------------
+// =====================
+// CNPJ VALIDATION > END
+// =====================
