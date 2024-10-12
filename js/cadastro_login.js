@@ -29,13 +29,11 @@ function changeFontSize(action) {
 $('#increase-font').click(function () {
     changeFontSize('aumentar');
     handleFontSizeChange();
-    // chama a função da pasta cadastro.js para desconsiderar a barra de rolagem
 });
 
 $('#decrease-font').click(function () {
     changeFontSize('diminuir');
     handleFontSizeChange();
-    // chama a função da pasta cadastro.js para desconsiderar a barra de rolagem
 });
 
 function handleFontSizeChange() {
