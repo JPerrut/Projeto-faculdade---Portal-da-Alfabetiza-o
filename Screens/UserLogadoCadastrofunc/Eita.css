@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+/* Configurações globais de fonte e box-sizing */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+    font-size: 100.5%;
+}
+
+:root {
+    --back-color: rgb(24, 24, 24);
+    --header-color: rgb(17, 17, 17);
+    --font-color: rgb(219, 219, 219);
+    --container-border: rgba(0, 0, 0, 0.3);
+    --btn-color: rgba(0, 212, 255, 1);
+    --btn-hover: rgba(0, 150, 200, 1);
+    --success-color: #d4edda;
+    --error-color: #f8d7da;
+    --success-border: #c3e6cb;
+    --error-border: #f5c6cb;
+}
+
+/* Configurações gerais para o corpo */
+body {
+    background-color: var(--back-color);
+    color: var(--font-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Container principal */
+.container {
+    width: 80%;
+    max-width: 800px;
+    background-color: var(--header-color);
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* Títulos */
+h2 {
+    color: var(--font-color);
+    margin-bottom: 20px;
+    font-size: 2.3rem;
+    font-weight: 700;
+}
+
+.tabela-container {
+    max-height: 300px; /* Altura fixa para a área da tabela */
+    overflow-y: auto; /* Adiciona barra de rolagem vertical */
+    border: 1px solid #ddd; /* Borda para a área de rolagem */
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+/* Estilos para tabelas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid var(--container-border);
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: var(--back-color);
+    color: var(--font-color);
+}
+
+tr:nth-child(even) {
+    background-color: rgba(219, 219, 219, 0.1);
+}
+
+tr:hover {
+    background-color: rgba(219, 219, 219, 0.2);
+}
+
+/* Mensagens de feedback */
+.feedback-msg {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    text-align: center;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.success-msg {
+    background-color: var(--success-color);
+    color: #155724;
+    border: 1px solid var(--success-border);
+}
+
+.error-msg {
+    background-color: var(--error-color);
+    color: #721c24;
+    border: 1px solid var(--error-border);
+}
+
+/* Estilos para seções de formulário */
+.form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.input-field,
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--container-border);
+    border-radius: 5px;
+    background-color: var(--header-color);
+    color: var(--font-color);
+    font-size: 1rem;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--container-border);
+    border-radius: 5px;
+    background-color: var(--header-color);
+    color: rgba(219, 219, 219, 0.7); /* Mesma cor usada para os outros placeholders */
+    opacity: 1; /* Garante que o placeholder não fique esmaecido */
+}
+
+input[type="date"]::placeholder {
+    color: var(--font-color);
+    opacity: 0.7;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--btn-color);
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.6);
+}
+
+/* Botões */
+.button {
+    padding: 12px 24px;
+    background-color: var(--btn-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: var(--btn-hover);
+}
+
+button img {
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+button[type="submit"] {
+    margin-top: 20px;
+}
+
+/* Ajuste para botões em formulários */
+button,
+input[type="submit"] {
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* Personalização para inputs e selects */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+    background-color: var(--header-color);
+    color: var(--font-color);
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+textarea::placeholder {
+    color: rgba(219, 219, 219, 0.7);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+}
