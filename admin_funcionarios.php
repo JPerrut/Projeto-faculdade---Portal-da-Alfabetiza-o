@@ -1,12 +1,14 @@
 <?php
-include 'dashboard_admin.php';
-// Incluir o arquivo de conexão com o banco de dados
+include 'dashboard_user.php';
+include 'buscar.php';
 
 $id_empresa = $_SESSION['user_id'];
-// Consulta para selecionar todos os funcionários cadastrados
-$stmt = $conn->prepare("SELECT * FROM funcionarios");
-$stmt->execute();
-$result = $stmt->get_result();
+
+
+// Definir tabela e colunas com base no tipo de exibição
+$table = $_GET['table'] ?? 'empresas';
+$columns = $_GET['columns'] ?? 'nome_empresa, cnpj';
+include 'verificar_tabela.php';
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">

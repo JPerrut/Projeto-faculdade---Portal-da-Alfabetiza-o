@@ -1,7 +1,7 @@
 <?php
 include 'dashboard_user.php';
 include 'buscar.php';
-include 'verificar_tabela.php';
+
 $id_empresa = $_SESSION['user_id'];
 
 

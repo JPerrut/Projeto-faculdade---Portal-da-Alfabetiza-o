@@ -1,23 +1,14 @@
 <?php
-include 'dashboard_admin.php';
-// Incluir o arquivo de conexão com o banco de dados
+include 'dashboard_user.php';
+include 'buscar.php';
 
 $id_empresa = $_SESSION['user_id'];
-// Consulta para selecionar todas as empresas
-$sql = "SELECT nome_empresa, email, cnpj, cep, estado, cidade, bairro, rua, numero, complemento, telefone, celular 
-            FROM empresas WHERE id_empresa = ?";
 
-    // Preparar a consulta
-    if ($stmt = $conn->prepare($sql)) {
-        // Vincular o parâmetro (id_empresa) à consulta
-        $stmt->bind_param("i", $id_empresa);
 
-        // Executar a consulta
-        $stmt->execute();
-
-        // Obter o resultado
-        $result = $stmt->get_result();
-    }
+// Definir tabela e colunas com base no tipo de exibição
+$table = $_GET['table'] ?? 'empresas';
+$columns = $_GET['columns'] ?? 'nome_empresa, cnpj';
+include 'verificar_tabela.php';
 ?>
 
 <!DOCTYPE html>
