@@ -53,6 +53,21 @@ label {
     margin-bottom: 5px;
     font-size: 1rem;
     font-weight: 400;
+    margin-left: 1px;
+}
+
+input[readonly] {
+    background: rgba(143, 142, 142, 0.6);
+    cursor: not-allowed;
+  }
+
+.container_input {
+    margin-bottom: 10px;
+}
+
+span {
+    color: #8B0000;
+    margin-left: 1px;
 }
 
 input,
@@ -60,7 +75,7 @@ textarea,
 button {
     width: 100%;
     padding: 12px;
-    margin-bottom: 15px;
+    margin-bottom: 3px;
     border: 1px solid var(--input-border);
     border-radius: 5px;
     background-color: var(--form-color);
@@ -80,8 +95,13 @@ textarea:focus {
     outline: none;
 }
 
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
 /* Botão de envio */
-button {
+.buttons #submit, .buttons button {
     background-color: var(--btn-color);
     color: #fff;
     border: none;
@@ -91,9 +111,31 @@ button {
     transition: background-color 0.3s ease;
 }
 
-button:hover {
+#submit:hover, button:hover {
     background-color: var(--btn-hover);
+    cursor: pointer;
 }
+
+ /* ==================================
+  ERROR AND SUCCESS MESSAGE > BEGINNING
+  ===================================== */
+
+  #successMessage {
+    display: none;
+    color: rgb(0, 128, 0);
+    margin-top: 20px;
+    font-size: 16px;
+  }
+  
+  .spans {
+    color: #8B0000;
+    font-size: 12px;
+    display: block;
+  }
+  
+    /* ============================
+    ERROR AND SUCCESS MESSAGE > END
+    =============================== */
 
 /* Responsividade */
 @media (max-width: 768px) {

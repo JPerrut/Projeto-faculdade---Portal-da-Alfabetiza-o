@@ -32,7 +32,6 @@ function checkChar(e) {
 
 $('#contactForm').on('submit', function(e) {
     // Adiciona um evento ao formulário quando ele é submetido
-    e.preventDefault(); 
     // Impede o envio padrão do formulário
     
     const name = $('#name').val();
@@ -111,11 +110,14 @@ $('#contactForm').on('submit', function(e) {
         // Limpa a mensagem de erro
     }
 
+    if (isValid === false) {
+        e.preventDefault(); 
+    }
+
     // VALIDATION OF THE MESSAGE FIELD > END
 
     if (isValid) {
         // Se todos os campos forem válidos, exibe a mensagem de sucesso e reseta o formulário
-        $('#contactForm')[0].reset(); 
         // Reseta o formulário
         $('#formSent').text('Formulário enviado com sucesso!'); 
         // Mensagem de sucesso

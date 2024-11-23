@@ -141,7 +141,7 @@
                  SECTION_FOUR > BEGINNING 
                  ======================== -->
             <section class="section_four">
-                <form action="#" method="post" id="contactForm" novalidate>
+                <form action="https://api.staticforms.xyz/submit" method="post" id="contactForm" novalidate>
                     <div class="box_input">
                         <input type="text" id="name" name="name" placeholder="" maxlength="60" />
                         <label>Nome:</label>
@@ -165,6 +165,9 @@
                         <label>Mensagem:</label>
                         <span id="messageError" class="error"></span>
                     </div> <!-- class="box_input" END -->
+
+                    <input type="hidden" name="accessKey" value="30fdc277-aad1-4243-b9e6-09394945c12a">
+                    <input type="hidden" name="redirectTo" value="http://localhost/PBD/index.html">
         
                     <input type="submit" value="Enviar" id="submit" name="submit" />
                     <span id="formSent" class="formSent"></span>

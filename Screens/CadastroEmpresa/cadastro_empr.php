@@ -20,20 +20,20 @@ if (isset($_POST['cadastrar'])) {
     $telefone = isset($_POST['telefone']) ? $conn->real_escape_string($_POST['telefone']) : '';
     $celular = isset($_POST['celular']) ? $conn->real_escape_string($_POST['celular']) : '';
 
-    
-    // Consulta para inserir os dados no banco de dados
-    $sql = "INSERT INTO empresas (nome_empresa, email, senha, cnpj, cep, estado, cidade, bairro, rua, numero, complemento, telefone, celular) 
-            VALUES ('$nome_empresa', '$email', '$senha', '$cnpj', '$cep', '$estado', '$cidade', '$bairro', '$rua', '$numero', '$complemento', '$telefone', '$celular')";
 
-    // Executa a consulta e verifica se foi bem-sucedida
-    if ($conn->query($sql) === TRUE) {
-        echo header("Location: ../../Screens/Login/login.html");
-    } else {
-        echo "Erro: " . $sql . "<br>" . $conn->error;
-    }
-}
+            // Consulta para inserir os dados no banco de dados
+            $sql = "INSERT INTO empresas (nome_empresa, email, senha, cnpj, cep, estado, cidade, bairro, rua, numero, complemento, telefone, celular) 
+                    VALUES ('$nome_empresa', '$email', '$senha', '$cnpj', '$cep', '$estado', '$cidade', '$bairro', '$rua', '$numero', '$complemento', '$telefone', '$celular')";
 
-    // Fechar a conexão
-    $conn->close();
-
-?>
+            // Executa a consulta e verifica se foi bem-sucedida
+            if ($conn->query($sql) === TRUE) {
+                header("Location: ../../Screens/Login/login.html");
+                exit; // Sempre utilizar exit após o redirecionamento
+            } else {
+                echo "Erro: " . $sql . "<br>" . $conn->error;
+            }
+      }
+  
+  // Fechar a conexão
+  $conn->close();
+  ?>

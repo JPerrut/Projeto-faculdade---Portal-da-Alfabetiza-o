@@ -24,7 +24,6 @@ if (!regex.test(char)) {
 }
 });
 
-
 function validateField(field) {
     const value = $(field).val().trim();
     const fieldName = $(field).attr('name');
@@ -33,36 +32,35 @@ function validateField(field) {
     switch (fieldName) {
         case 'nome_escola':
             const namePattern = /^[A-Za-zÀ-ÿ\s]+$/;
-            errorMsg = value.length === 0 ? 'Nome da empresa é obrigatório.' :
+            errorMsg = value.length === 0 ? 'Nome da escola é obrigatório.' :
                         !namePattern.test(value) ? 'O nome só pode conter letras e espaços.' : '';
             break;            
         case 'email':
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            errorMsg = value.length === 0 ? 'Email é obrigatório.' : !emailPattern.test(value) ? 'Email inválido.' : '';
+            errorMsg = value.length === 0 ? 'O email é obrigatório.' : !emailPattern.test(value) ? 'Email inválido.' : '';
             break;
         case 'cep':
-            errorMsg =  value.length ===0 ? 'A senha é obrigatória.' :
-                        value.length != 8 ? 'A senha deve ter 8 caracteres.' : '';
+            errorMsg =  value.length === 0 ? 'O CEP é obrigatório.' :
+                        value.length != 9 ? 'CEP inválido.' : '';
             break;
         case 'estado':
-            errorMsg = value !== $('#password').val() ? 'As senhas não coincidem.' : '';
+            errorMsg =  value.length === 0 ? 'O estado é obrigatório.' : ''
             break;
         case 'cidade':
-            errorMsg = value.length === 0 ? 'CNPJ é obrigatório.' : !validateCNPJ(value) ? 'CNPJ inválido.' : '';
+            errorMsg =  value.length === 0 ? 'A cidade é obrigatória.' : ''
+
             break;
         case 'bairro':
-            const cepPattern = /^\d{5}-\d{3}$/;
-            errorMsg = value.length === 0 ? 'CEP é obrigatório.' : !cepPattern.test(value) ? 'CEP inválido. Formato esperado: 00000-000' : '';
+            errorMsg =  value.length === 0 ? 'O bairro é obrigatório.' : ''
+
             break;
         case 'rua':
-            errorMsg = value.length === 0 ? 'Número é obrigatório.' : '';
+            errorMsg =  value.length === 0 ? 'A rua é obrigatória.' : ''
+
             break;
         case 'numero':
-            errorMsg = value.length === 0 ? 'Número é obrigatório.' : '';
+            errorMsg = value.length === 0 ? 'Número da casa é obrigatório.' : '';
             break;
-        case 'complemento':
-          errorMsg = value.length === 0 ? 'Número é obrigatório.' : '';
-          break;
           
         case 'telefone':
         case 'celular':
@@ -73,7 +71,7 @@ function validateField(field) {
           default:
           break;
         case 'hora_aula':
-          errorMsg = value.length === 0 ? 'Número é obrigatório.' : '';
+          errorMsg = value.length === 0 ? 'As horas das aulas são obrigatórias.' : '';
           break;
               }
 
@@ -110,3 +108,39 @@ $('#clearBtn').on('click', function () {
     $('.spans').text(''); // Limpa todas as mensagens de erro
     $('#successMessage').text('').hide(); // Esconde a mensagem de sucesso
 });
+
+
+// ------------------------------------
+// OBTENÇÃO DE DADOS DO CEP > BEGINNING
+// ------------------------------------
+
+$('#cep').on('blur', function () {
+    const cep = $(this).val().replace(/\D/g, '');
+    if (cep.length === 8) {
+        $.getJSON(`https://viacep.com.br/ws/${cep}/json/`, function (data) {
+            if (!data.erro) {
+                $('#rua').val(data.logradouro).trigger('keyup');
+                $('#bairro').val(data.bairro).trigger('keyup');
+                $('#cidade').val(data.localidade).trigger('keyup');
+                $('#estado').val(data.uf).trigger('keyup');
+                $('#cep').next('.spans').text('');
+            } else {
+                $('#rua, #bairro, #cidade, #estado').val('');
+                $('#cep').next('.spans').text('CEP não encontrado.');
+            }
+        }).fail(function () {
+            $('#rua, #bairro, #cidade, #estado').val('');
+            $('#cep').next('.spans').text('Erro ao buscar o CEP.');
+        });
+    } else if (cep.length === 0) {
+        $('#cep').next('.spans').text('CEP é obrigatório.');
+        $('#rua, #bairro, #cidade, #estado').val('');
+    } else {
+        $('#cep').next('.spans').text('CEP inválido.');
+        $('#rua, #bairro, #cidade, #estado').val('');
+    }
+});
+
+// ------------------------------------
+// OBTENÇÃO DE DADOS DO CEP > END
+// ------------------------------------
