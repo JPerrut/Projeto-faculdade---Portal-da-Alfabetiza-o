@@ -12,6 +12,7 @@
   width: 100% auto;
   cursor: pointer;
   border: none;
+  font-size: 2rem;
   border-radius: 15px;
   color: var(--font-color);
   background: linear-gradient(var(--header-color), var(--header-color)) padding-box, var(--blue-gradient-color) border-box;

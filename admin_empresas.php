@@ -1,13 +1,14 @@
 <?php
-include 'dashboard_admin.php';
-// Incluir o arquivo de conexão com o banco de dados
+include 'dashboard_user.php';
+include 'buscar.php';
+include 'verificar_tabela.php';
+$id_empresa = $_SESSION['user_id'];
 
-// Consulta para selecionar todas as empresas
-$sql = "SELECT nome_empresa, email, cnpj, cep, estado, cidade, bairro, rua, numero, complemento, telefone, celular FROM empresas";
 
-// Preparar a consulta
-$result = $conn->query($sql);
-
+// Definir tabela e colunas com base no tipo de exibição
+$table = $_GET['table'] ?? 'empresas';
+$columns = $_GET['columns'] ?? 'nome_empresa, cnpj';
+include 'verificar_tabela.php';
 ?>
 
 <!DOCTYPE html>
@@ -111,46 +112,8 @@ $result = $conn->query($sql);
     </style>
 </head>
 <body>
-    <h2>Empresas Cadastradas</h2>
-
-    <?php if ($result->num_rows > 0): ?>
-        <table>
-            <tr>
-                <th>Nome da Empresa</th>
-                <th>Email</th>
-                <th>CNPJ</th>
-                <th>CEP</th>
-                <th>Estado</th>
-                <th>Cidade</th>
-                <th>Bairro</th>
-                <th>Rua</th>
-                <th>Número</th>
-                <th>Complemento</th>
-                <th>Telefone</th>
-                <th>Celular</th>
-            </tr>
-
-            <?php while($row = $result->fetch_assoc()): ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($row['nome_empresa']); ?></td>
-                    <td><?php echo htmlspecialchars($row['email']); ?></td>
-                    <td><?php echo htmlspecialchars($row['cnpj']); ?></td>
-                    <td><?php echo htmlspecialchars($row['cep']); ?></td>
-                    <td><?php echo htmlspecialchars($row['estado']); ?></td>
-                    <td><?php echo htmlspecialchars($row['cidade']); ?></td>
-                    <td><?php echo htmlspecialchars($row['bairro']); ?></td>
-                    <td><?php echo htmlspecialchars($row['rua']); ?></td>
-                    <td><?php echo htmlspecialchars($row['numero']); ?></td>
-                    <td><?php echo htmlspecialchars($row['complemento']); ?></td>
-                    <td><?php echo htmlspecialchars($row['telefone']); ?></td>
-                    <td><?php echo htmlspecialchars($row['celular']); ?></td>
-                </tr>
-            <?php endwhile; ?>
-        </table>
-    <?php else: ?>
-        <p>Nenhuma empresa cadastrada.</p>
-    <?php endif; ?>
-
+    <h2><?php echo ucfirst($table); ?> Cadastrados</h2>
+    <?php echo generateTable($result); ?>
     <?php
     // Fechar a conexão
     $conn->close();

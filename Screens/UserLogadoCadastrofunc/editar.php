@@ -1,16 +1,7 @@
 <?php  
-// Conexão com o banco de dados
-$servername = "localhost";
-$username = "root";  
-$password = "7634";      
-$dbname = "portal";
-
-// Criar conexão
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Verificar conexão
-if ($conn->connect_error) {
-    die("Conexão falhou: " . $conn->connect_error);
-}
+// Conexão com o banco
+include '../../dashboard_user.php';
+$id_empresa = $_SESSION['user_id'];
 
 $mensagem = "";
 
@@ -19,11 +10,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['adicionar'])) {
         try {
             $sql = "INSERT INTO funcionarios (nome_func, email, data_nasc, numero, complemento, rua, bairro, cidade, 
-                estado, cep, escolaridade, sexo, turno, cpf, rg) 
+                estado, cep, escolaridade, sexo, turno, cpf, rg, id_empresa) 
                     VALUES ('{$_POST['nome_func']}', '{$_POST['email']}', '{$_POST['data_nasc']}', '{$_POST['numero']}', 
                     '{$_POST['complemento']}', '{$_POST['rua']}', '{$_POST['bairro']}', '{$_POST['cidade']}', 
                     '{$_POST['estado']}', '{$_POST['cep']}', '{$_POST['escolaridade']}', '{$_POST['sexo']}', 
-                    '{$_POST['turno']}', '{$_POST['cpf']}', '{$_POST['rg']}')";
+                    '{$_POST['turno']}', '{$_POST['cpf']}', '{$_POST['rg']}', $id_empresa)";
             $conn->query($sql);
             $mensagem = "<div class='feedback-msg success-msg'>Novo usuário adicionado com sucesso!</div>";
         } catch (mysqli_sql_exception $e) {
