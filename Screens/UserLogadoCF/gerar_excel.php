@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/PBD/dashboard.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/PBD/conexao.php';
 
 
 // Definir cabeçalhos para baixar o arquivo como Excel

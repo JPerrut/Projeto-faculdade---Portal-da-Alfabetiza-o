@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../../conexao.php';
+include '../../conexaoOFC.php';
 // Verifica se o usuário está logado
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../../Screens/Login/login.html");
@@ -65,9 +65,9 @@ $name = $_SESSION['nome_empresa'];
                         <?php echo 'Ola, ' . $name; ?> 
                         <div id="logado"></div>
                     </button> <!-- {class="user_logado" > END} -->
-                    
+                     
                     <div class="menu-logado">
-                        <a class="editar-perfil" href="/perfilEdit">
+                        <a class="editar-perfil" href="./editarPerfil/editarPerfil.html.php">
                             <i class="fa-solid fa-gear"></i>
                             <div class="cf_text">
                                 <h6 class="cf_title">Editar Perfil</h6>

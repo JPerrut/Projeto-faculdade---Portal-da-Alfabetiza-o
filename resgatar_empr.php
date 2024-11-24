@@ -4,6 +4,47 @@ include 'buscar.php';
 
 $id_empresa = $_SESSION['user_id'];
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $senha_atual = filter_input(INPUT_POST, 'senha_atual', FILTER_SANITIZE_STRING);
+    $nova_senha = filter_input(INPUT_POST, 'nova_senha', FILTER_SANITIZE_STRING);
+    $confirmar_senha = filter_input(INPUT_POST, 'confirmar_senha', FILTER_SANITIZE_STRING);
+
+    // Consulta a senha atual no banco
+    $sql = "SELECT senha FROM empresas WHERE id_empresa = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $id_empresa);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows === 1) {
+        $user = $result->fetch_assoc();
+        $senha_hash = $user['senha'];
+
+        // Verifica se a senha atual está correta
+        if (password_verify($senha_atual, $senha_hash)) {
+            // Verifica se as novas senhas coincidem
+            if ($nova_senha === $confirmar_senha) {
+                // Atualiza a senha no banco de dados
+                $nova_senha_hash = password_hash($nova_senha, PASSWORD_DEFAULT);
+                $sql = "UPDATE empresas SET senha = ? WHERE id_empresa = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param('si', $nova_senha_hash, $id_empresa);
+
+                if ($stmt->execute()) {
+                    $message = "Senha atualizada com sucesso!";
+                } else {
+                    $error = "Erro ao atualizar a senha. Tente novamente.";
+                }
+            } else {
+                $error = "As novas senhas não coincidem.";
+            }
+        } else {
+            $error = "A senha atual está incorreta.";
+        }
+    } else {
+        $error = "Usuário não encontrado.";
+    }
+}
 
 // Definir tabela e colunas com base no tipo de exibição
 $table = $_GET['table'] ?? 'empresas';
@@ -113,47 +154,9 @@ include 'verificar_tabela.php';
     </style>
 </head>
 <body>
-    <h2>Empresas Cadastradas</h2>
-
-    <?php if ($result->num_rows > 0): ?>
-        <table>
-            <tr>
-                <th>Nome da Empresa</th>
-                <th>Email</th>
-                <th>CNPJ</th>
-                <th>CEP</th>
-                <th>Estado</th>
-                <th>Cidade</th>
-                <th>Bairro</th>
-                <th>Rua</th>
-                <th>Número</th>
-                <th>Complemento</th>
-                <th>Telefone</th>
-                <th>Celular</th>
-            </tr>
-
-            <?php while($row = $result->fetch_assoc()): ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($row['nome_empresa']); ?></td>
-                    <td><?php echo htmlspecialchars($row['email']); ?></td>
-                    <td><?php echo htmlspecialchars($row['cnpj']); ?></td>
-                    <td><?php echo htmlspecialchars($row['cep']); ?></td>
-                    <td><?php echo htmlspecialchars($row['estado']); ?></td>
-                    <td><?php echo htmlspecialchars($row['cidade']); ?></td>
-                    <td><?php echo htmlspecialchars($row['bairro']); ?></td>
-                    <td><?php echo htmlspecialchars($row['rua']); ?></td>
-                    <td><?php echo htmlspecialchars($row['numero']); ?></td>
-                    <td><?php echo htmlspecialchars($row['complemento']); ?></td>
-                    <td><?php echo htmlspecialchars($row['telefone']); ?></td>
-                    <td><?php echo htmlspecialchars($row['celular']); ?></td>
-                </tr>
-            <?php endwhile; ?>
-        </table>
-    <?php else: ?>
-        <p>Nenhuma empresa cadastrada.</p>
-    <?php endif; ?>
-
-    <?php
+<h2><?php echo ucfirst($table); ?> Cadastrados</h2>
+    <?php echo generateTable($result); 
+    
     // Fechar a conexão
     $conn->close();
     ?>

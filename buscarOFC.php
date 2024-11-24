@@ -1,6 +1,5 @@
 <?php
-include 'conexao.php';
-
+include 'conexaoOFC.php';
 /**
  * Busca dados de uma tabela com condições opcionais.
  *
@@ -9,7 +8,7 @@ include 'conexao.php';
  * @param array|null $where Condições (exemplo: ['id_empresa' => $id]).
  * @param mysqli $conn Conexão do banco de dados.
  * @return mysqli_result|false Resultado da consulta ou false em caso de erro.
- */
+ */ 
 function fetchData($table, $columns, $where = null, $conn) {
     $sql = "SELECT $columns FROM $table";
     if ($where) {
@@ -48,15 +47,15 @@ function generateTable($result) {
     foreach ($columns as $column) {
         $table .= "<th>" . htmlspecialchars($column) . "</th>";
     }
-    $table .= "<th>Ações</th></tr>";
+    $table .= "<th>Ações</th></tr>"; 
 
     while ($row = $result->fetch_assoc()) {
         $table .= "<tr>";
         foreach ($columns as $column) {
             $table .= "<td>" . htmlspecialchars($row[$column]) . "</td>";
-        }
+        }  
         // Botão de edição dinâmico
-        $table .= "<td><a href='edit.php?id=" . htmlspecialchars($row['id']) . "&table=" . $_GET['table'] . "'>Editar</a></td>";
+        $table .= "<td><a href='edita.php?id=" . htmlspecialchars($row['id_empresa']) . "&table=" . htmlspecialchars($table) . "'>Editar</a></td>";
         $table .= "</tr>";
     }
     $table .= "</table>";

@@ -1,3 +1,8 @@
+<?php
+session_start();
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br" translate="no">
 <head>
@@ -48,7 +53,14 @@
                     <label for="loginPassword">Senha:</label>
                     <input type="password" name="loginSenha" maxlength="8" id="loginSenha" placeholder="Digite sua senha" >
                 </div>
-                <div id="errorMessage"></div>
+                <div id="errorMessage">
+                    <?php
+                    if (isset($_SESSION['error_message'])) {
+                        echo $_SESSION['error_message'];
+                        unset($_SESSION['error_message']);
+                    }
+                    ?>
+                </div>
                 <div class="buttons">
                     <input type="submit" name="login"id="loginBtn">
                     <button type="button" id="clearLogin">Limpar</button>
@@ -57,10 +69,8 @@
                     <p>Ainda não tem uma conta?</p>
                     <a href="../../Screens/CadastroEmpresa/cadastro.html" id="cadastrar_conta">Cadastrar</a>
                 </div>
-                <!-- Mensagem de erro -->
-                <div id="loginMessage" style="color: green; display: none;"></div>
             </form>
-    </div>
+        </div>
 
     </main>
 

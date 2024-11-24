@@ -1,5 +1,4 @@
 <?php
-// conexao.php
 
 // Configurações do banco de dados
 $host = "localhost";

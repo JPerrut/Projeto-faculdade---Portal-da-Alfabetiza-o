@@ -1,42 +1,76 @@
 <?php
+include '../../../dashboard_userOFC.php';
+include '../../../buscarOFC.php';
 
-include '../../dashboard_user.php';
-// Conexão com o banco de dados
+// Obtém o ID da empresa (usuário logado)
+$id_empresa = $_SESSION['user_id'];
 
-// Obtém o ID do usuário logado
-$user_id = $_SESSION['user_id'];
+// Inicializa variáveis para mensagens e erros
+$message = '';
+$error = '';
 
-// Inicializa a variável para os dados do usuário
-$user = ['email' => '', 'senha' => ''];
-
-// Se o formulário foi enviado, atualiza os dados
+// Processa as alterações
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-    $senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_STRING);
+    // Obter dados do formulário
+    $email_atual = filter_input(INPUT_POST, 'email_atual', FILTER_SANITIZE_EMAIL);
+    $novo_email = filter_input(INPUT_POST, 'novo_email', FILTER_SANITIZE_EMAIL);
+    $senha_atual = filter_input(INPUT_POST, 'senha_atual', FILTER_SANITIZE_STRING);
+    $nova_senha = filter_input(INPUT_POST, 'nova_senha', FILTER_SANITIZE_STRING);
+    $confirmar_senha = filter_input(INPUT_POST, 'confirmar_senha', FILTER_SANITIZE_STRING);
 
-    $sql = "UPDATE empresas SET email = ?, senha = ? WHERE id_empresa = ?";
+    // Consulta os dados atuais no banco
+    $sql = "SELECT email, senha FROM empresas WHERE id_empresa = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('ssi', $email, $senha, $user_id);
+    $stmt->bind_param('i', $id_empresa);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    if ($stmt->execute()) {
-        echo "Dados atualizados com sucesso.";
+    if ($result->num_rows === 1) {
+        $user = $result->fetch_assoc();
+        $senha_hash = $user['senha'];
+        $email_atual_banco = $user['email'];
+
+        // Verificar se o email precisa ser alterado
+        if ($novo_email && $novo_email !== $email_atual_banco) {
+            if ($email_atual === $email_atual_banco) {
+                $sql = "UPDATE empresas SET email = ? WHERE id_empresa = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param('si', $novo_email, $id_empresa);
+
+                if ($stmt->execute()) {
+                    $message .= "Email atualizado com sucesso! ";
+                } else {
+                    $error .= "Erro ao atualizar o email. ";
+                }
+            } else {
+                $error .= "O email atual está incorreto. ";
+            }
+        }
+
+        // Verificar se a senha precisa ser alterada
+        if ($nova_senha && password_verify($senha_atual, $senha_hash)) {
+            if ($nova_senha === $confirmar_senha) {
+                $nova_senha_hash = password_hash($nova_senha, PASSWORD_DEFAULT);
+                $sql = "UPDATE empresas SET senha = ? WHERE id_empresa = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param('si', $nova_senha_hash, $id_empresa);
+
+                if ($stmt->execute()) {
+                    $message .= "Senha atualizada com sucesso!";
+                } else {
+                    $error .= "Erro ao atualizar a senha.";
+                }
+            } else {
+                $error .= "As novas senhas não coincidem.";
+            }
+        } elseif ($nova_senha) {
+            $error .= "A senha atual está incorreta.";
+        }
     } else {
-        echo "Erro ao atualizar os dados: " . $stmt->error;
+        $error = "Usuário não encontrado.";
     }
 }
 
-// Sempre busca os dados atuais para exibição
-$sql = "SELECT email, senha FROM empresas WHERE id_empresa = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param('i', $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
-
-// Verifica se o usuário foi encontrado
-if ($result->num_rows === 1) {
-    $user = -$result->fetch_assoc();
-} else {
-    echo "Usuário não encontrado.";
-    exit;
-}
 ?>
+
+

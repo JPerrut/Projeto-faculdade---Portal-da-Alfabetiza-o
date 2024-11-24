@@ -1,6 +1,6 @@
 <?php
 session_start(); //Faz a verificação 
-include 'conexao.php';
+include 'conexaoOFC.php';
 if (!isset($_SESSION['user_id'])) {
     header("Location: /PBD/Screens/Login/login.html");
     exit();

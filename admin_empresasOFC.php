@@ -1,6 +1,6 @@
 <?php
-include 'dashboard_user.php';
-include 'buscar.php';
+include 'dashboard_adminOFC.php';
+include 'buscarOFC.php';
 
 $id_empresa = $_SESSION['user_id'];
 
@@ -9,6 +9,7 @@ $id_empresa = $_SESSION['user_id'];
 $table = $_GET['table'] ?? 'empresas';
 $columns = $_GET['columns'] ?? 'nome_empresa, cnpj';
 include 'verificar_tabela.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -113,8 +114,8 @@ include 'verificar_tabela.php';
 </head>
 <body>
     <h2><?php echo ucfirst($table); ?> Cadastrados</h2>
-    <?php echo generateTable($result); ?>
-    <?php
+    <?php echo generateTable($result); 
+    
     // Fechar a conexão
     $conn->close();
     ?>

@@ -27,7 +27,7 @@ if (isset($_POST['cadastrar'])) {
 
             // Executa a consulta e verifica se foi bem-sucedida
             if ($conn->query($sql) === TRUE) {
-                header("Location: ../../Screens/Login/login.html");
+                header("Location: ../../Screens/Login/login.php");
                 exit; // Sempre utilizar exit após o redirecionamento
             } else {
                 echo "Erro: " . $sql . "<br>" . $conn->error;

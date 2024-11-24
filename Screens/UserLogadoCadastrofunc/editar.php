@@ -1,12 +1,12 @@
 <?php  
 // Conexão com o banco
-include '../../dashboard_user.php';
+include '../../dashboard_userOFC.php';
 $id_empresa = $_SESSION['user_id'];
 
 $mensagem = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $mensagem = "";
+    $mensagem = ""; 
     if (isset($_POST['adicionar'])) {
         try {
             $sql = "INSERT INTO funcionarios (nome_func, email, data_nasc, numero, complemento, rua, bairro, cidade, 
