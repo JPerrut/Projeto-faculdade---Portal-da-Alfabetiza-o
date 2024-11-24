@@ -12,6 +12,7 @@ session_start();
     <link rel="stylesheet" href="./login.css">
     <link rel="stylesheet" href="../Geral/global.css">
     <link rel="stylesheet" href="../Geral/header.css">
+    <link rel="stylesheet" href="../Homepage/Homepage - CSS/footer.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -73,6 +74,25 @@ session_start();
         </div>
 
     </main>
+    <footer>
+        <h2>Portal da alfabetização</h2>
+        
+        <ul class="menu_devs">
+            <li><a className="click-disappear" href="#move-start">Inicio</a></li>
+        </ul>
+
+        <h3>Desenvolvedores</h3>
+
+        <div class="devs">
+            <p>Anderson Ferreira</p>
+            <p>João Perrut</p>
+            <p>Pedro</p>
+            <p>Mariana Herbst</p>
+            <p>Taiane</p>
+        </div>
+    
+        <p class="direitos_reservados">&copy; 2024 Todos os direitos reservados</p>
+    </footer> 
 
 </body>
 </html>
