@@ -2,9 +2,10 @@
 include 'dashboard_adminOFC.php';
 $id_empresa = $_SESSION['user_id'];
 // Definir tabela e colunas com base no tipo de exibição
-$table = $_GET['table'] ?? 'empresas';
+$tableName = $_GET['table'] ?? 'empresas';
 $columns = $_GET['columns'] ?? '*';
-$tableName = 'empresas';
+$isAdmin = $_GET['isAdmin'] ?? TRUE;
+$empresa = $_GET['coluna'] ?? 'id_empresa';
 include 'buscarOFC.php';
 include 'verificar_tabelaOFC.php';
 
@@ -112,8 +113,8 @@ include 'verificar_tabelaOFC.php';
     </style>
 </head>
 <body>
-    <h2><?php echo ucfirst($table); ?> Cadastrados</h2>
-    <?php echo generateTable($result); ?>
+    <h2><?php echo ucfirst($tableName); ?> Cadastrados</h2>
+    <?php echo generateTable($result, $tableName); ?>
 
     <?php
     // Fechar a conexão

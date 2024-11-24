@@ -10,8 +10,8 @@ ini_set('memory_limit', '512M'); // Aumenta para 256MB
  * @param mysqli $conn Conexão do banco de dados.
  * @return mysqli_result|false Resultado da consulta ou false em caso de erro.
  */ 
-function fetchData($table, $columns, $where = null, $conn) {
-    $sql = "SELECT $columns FROM $table";
+function fetchData($tableName, $columns, $where = null, $conn) {
+    $sql = "SELECT $columns FROM $tableName";
     if ($where) {
         $conditions = [];
         foreach ($where as $column => $value) {
@@ -61,6 +61,8 @@ function generateTable($result, $tableName) {
         $table .= "</tr>";
     }
     $table .= "</table>";
+
+    
 
     return $table;
 }

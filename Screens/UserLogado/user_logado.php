@@ -45,10 +45,23 @@ $name = $_SESSION['nome_empresa'];
  <?php if ($is_admin): ?>
         <!-- Conteúdo para administradores -->
         <h2>Painel de Administração</h2>
-        <div class="menu">
-            <button onclick="location.href='gerenciar_usuarios.php'">Gerenciar Usuários</button>
-        </div>
+        <div class="container_admin">
 
+            <a class="menu_admin" href="./logout.php">
+                <div class="leave_admin">
+                    <img class="image_leave" src="../../images/login_user/logout.png" alt="logout" />
+                    <h6 class="text_leave">Sair da conta</h6>
+                </div> <!-- {class="leave" > END} -->
+            </a>
+
+            <a class="menu_admin" href="../../admin_empresasOFC.php"> 
+                <div class="editar-perfil">
+                    <i class="fa-solid fa-gear"></i>
+                    <h6 class="cf_title">Acessar empresas</h6>
+                </div> <!-- {class="nome_empresa" > END} -->
+            </a>
+        </div>
+            
  <?php else: ?>
     <header>
         <div class="container">

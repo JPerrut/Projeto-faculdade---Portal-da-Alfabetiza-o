@@ -10,5 +10,5 @@ if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) {
         : null; // Define como null se não houver id_empresa na sessão
 }
 // Buscar os dados
-$result = fetchData($table, $columns, $where, $conn);
+$result = fetchData($tableName, $columns, $where, $conn);
    
