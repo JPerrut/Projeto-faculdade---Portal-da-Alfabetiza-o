@@ -110,3 +110,75 @@ VALUES
     ('Renato Souza', '667788998', '667.788.990-44', '1981-10-10', 'Tarde', 'Ensino Médio Incompleto', 'Masculino', '89012-345', 'Paraíba', 'João Pessoa', 'Centro', 'Rua Q', '567', 'Casa 303'),
     ('Karina Costa', '778899005', '778.899.001-55', '1990-02-20', 'Noite', 'Ensino Superior Completo', 'Feminino', '90123-456', 'Rio Grande do Norte', 'Natal', 'Centro', 'Rua R', '678', 'Apto 303'),
     ('Leandro Dias', '889800112', '889.900.112-66', '1993-08-18', 'Manhã', 'Ensino Médio Completo', 'Masculino', '12345-678', 'Sergipe', 'Aracaju', 'Jardim Centenário', 'Rua S', '789', 'Casa 808');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- Criação do banco de dados
+CREATE DATABASE portal;
+USE portal;
+
+-- Criação da tabela 'empresas'
+CREATE TABLE empresas (
+    id_empresa INT AUTO_INCREMENT PRIMARY KEY,
+    nome_empresa VARCHAR(50) NOT NULL,
+    cnpj VARCHAR(20) NOT NULL,
+    senha VARCHAR(50) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    cep VARCHAR(20) NOT NULL,
+    estado VARCHAR(20) NOT NULL,
+    cidade VARCHAR(30) NOT NULL,
+    bairro VARCHAR(50) NOT NULL,
+    rua VARCHAR(50) NOT NULL,
+    numero VARCHAR(10),
+    complemento VARCHAR(50),
+    telefone VARCHAR(20) NOT NULL,
+    celular VARCHAR(20) NOT NULL,
+    is_admin TINYINT(1) DEFAULT 0
+);
+
+-- Criação da tabela 'funcionarios'
+CREATE TABLE funcionarios (
+    id_funcionario INT AUTO_INCREMENT PRIMARY KEY,
+    id_empresa INT NOT NULL,
+    nome_func VARCHAR(80) NOT NULL,
+    rg VARCHAR(12) NOT NULL,
+    cpf VARCHAR(14) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    turno VARCHAR(10) NOT NULL,
+    sexo VARCHAR(10) NOT NULL,
+    escolaridade VARCHAR(20) NOT NULL,
+    data_nasc VARCHAR(30) NOT NULL,
+    cep VARCHAR(20) NOT NULL,
+    estado VARCHAR(20) NOT NULL,
+    cidade VARCHAR(30) NOT NULL,
+    bairro VARCHAR(50) NOT NULL,
+    rua VARCHAR(50) NOT NULL,
+    numero VARCHAR(10),
+    complemento VARCHAR(50),
+    FOREIGN KEY (id_empresa) REFERENCES empresas(id_empresa)
+        ON DELETE CASCADE ON UPDATE CASCADE
+);
