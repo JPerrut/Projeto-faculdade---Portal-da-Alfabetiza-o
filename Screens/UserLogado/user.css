@@ -24,7 +24,7 @@ body {
     text-decoration: none;
 }
 
-.menu_admin .leave_admin, .menu_admin .editar-perfil {
+.menu_admin .leave_admin, .menu_admin .editar_perfil_admin {
     display: flex;
     flex-direction: column;
     width: auto;
@@ -46,44 +46,31 @@ body {
 .leave_admin h6 {
     font-size: 2rem;
     margin-top: 10px;
+    color: var(--font-color);
 }
 
-.editar-perfil {
+.editar_perfil_admin {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.editar-perfil i {
+.editar_perfil_admin i {
     font-size: 7rem;
+    color: var(--font-color);
 }
 
-.editar-perfil h6 {
+.editar_perfil_admin h6 {
     font-size: 1.7rem;
+    color: var(--font-color);
 }
 
-
-
-h2{
-    margin-top: 20px;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    font-size: 3.5rem;
+#titulo_admin {
+    text-align: center;
     background: var(--text-blue-gradient-color);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    transition: all 0.3s;
-    text-align: center;
+    margin: 20px 0;
+    font-size: 5rem;
 }
-
-.menu{
-    display: flex; 
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin: 0;
-    padding: 80%;
-}
-

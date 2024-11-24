@@ -28,14 +28,17 @@ $name = $_SESSION['nome_empresa'];
     <link rel="stylesheet" href="./logged_in_user.css">
     <link rel="stylesheet" href="user.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" 
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" defer></script>
-    <script src="../../Screens/Homepage/Homepage - JS/script.js" defer></script>
+
     <script src="../../Screens/Homepage/Homepage - JS/menu.js" defer></script>
     <script src="../../Screens/Homepage/Homepage - JS/cadastro_funcionario.js" defer></script>
     <script src="../../Screens/Homepage/Homepage - JS/cpf_cep.js" defer></script>
+    <script src="../Geral/header.js" defer></script>
     <script src="./logged_in_user.js" defer></script>
 
     <title>Portal da alfabetização</title>
@@ -44,7 +47,7 @@ $name = $_SESSION['nome_empresa'];
  
  <?php if ($is_admin): ?>
         <!-- Conteúdo para administradores -->
-        <h2>Painel de Administração</h2>
+        <h2 id="titulo_admin">Painel de Administração</h2>
         <div class="container_admin">
 
             <a class="menu_admin" href="./logout.php">
@@ -55,7 +58,7 @@ $name = $_SESSION['nome_empresa'];
             </a>
 
             <a class="menu_admin" href="../../admin_empresasOFC.php"> 
-                <div class="editar-perfil">
+                <div class="editar_perfil_admin">
                     <i class="fa-solid fa-gear"></i>
                     <h6 class="cf_title">Acessar empresas</h6>
                 </div> <!-- {class="nome_empresa" > END} -->
@@ -127,7 +130,7 @@ $name = $_SESSION['nome_empresa'];
                         <h3 class="box_text_main_title">Aprender é Transformar</h3>
                         <p class="box_text_main_paragraph">Descubra o prazer da leitura e escrita com uma abordagem 
                         simples e prática, criada especialmente para você.</p>
-                        <a class="box_text_main_button" id="cdf" href="/cadastroFunc">Cadastre o seu funcionário</a>
+                        <a class="box_text_main_button" id="cdf" href="./cadastroFuncionarios/cadastrofuncionarios.php">Cadastre o seu funcionário</a>
                     </div> <!-- class="box_text_main" END -->
                 </section>
                 <!-- =================
