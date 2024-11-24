@@ -72,6 +72,26 @@ $(document).ready(function () {
                     errorMsg = 'Sexo é obrigatório.';
                 }
                 break;
+            case 'rua':
+                if (value.length === 0) {
+                    errorMsg = 'Rua é obrigatório.';
+                }
+                    break;
+            case 'bairro':
+                if (value.length === 0) {
+                    errorMsg = 'Bairro é obrigatório.';
+                }
+                break;
+            case 'cidade':
+                if (value.length === 0) {
+                    errorMsg = 'Cidade é obrigatório.';
+                }
+                break;
+            case 'estado':
+                if (value.length === 0) {
+                    errorMsg = 'Estado é obrigatório.';
+                }
+                break;
 
             case 'cep':
                 const cepPattern = /^\d{5}-\d{3}$/;
@@ -120,9 +140,7 @@ $(document).ready(function () {
         }
 
         if (isValid) {
-            e.preventDefault();
             $('#successMessage').text('Cadastro realizado com sucesso!').css('color', 'green').show(); // Exibe a mensagem de sucesso
-            $('#form')[0].reset(); // Limpa todos os inputs
             setTimeout(function () {
                 $('#successMessage').hide();
             }, 3000); // 3000 milissegundos = 3 segundos

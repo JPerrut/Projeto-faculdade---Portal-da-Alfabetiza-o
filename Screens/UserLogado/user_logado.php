@@ -3,7 +3,7 @@ session_start();
 include '../../conexaoOFC.php';
 // Verifica se o usuário está logado
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../../Screens/Login/login.html");
+    header("Location: ../../Screens/Login/login.php");
     exit();
 }
 
@@ -75,7 +75,7 @@ $name = $_SESSION['nome_empresa'];
                             </div> <!-- class="cf_text" > END -->
                         </a> <!-- {class="nome_empresa" > END} -->
                     
-                        <a class="cadastrar_funcionario" href="../UserLogadoCadastrofunc/editar.php">
+                        <a class="cadastrar_funcionario" href="./cadastroFuncionarios/cadastrofuncionarios.php">
                             <i class="fa-solid fa-wrench"></i>
                             <div class="cf_text">
                                 <h6 class="cf_title">Cadastro de funcionários</h6>

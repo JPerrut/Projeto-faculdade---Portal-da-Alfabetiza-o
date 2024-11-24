@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
     // Verificando se a conexão com o banco de dados foi bem-sucedida
     if ($conn === false) {
         $_SESSION['error_message'] = "Erro na conexão com o banco de dados.";
-        header("Location: login.html"); // Redireciona de volta para a página de login
+        header("Location: login.php"); // Redireciona de volta para a página de login
         exit();
     }
 
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
     // Verificando se a preparação da consulta foi bem-sucedida
     if ($sql === false) {
         $_SESSION['error_message'] = "Erro na preparação da consulta: " . $conn->error;
-        header("Location: login.html");
+        header("Location: login.php");
         exit();
     }
 
@@ -47,7 +47,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
                 header("Location: ../../Screens/UserLogado/user_logado.php");
             }
             exit();
-            } 
+            } else {
+                $_SESSION['error_message'] = "Usuário ou senha incorretos.";
+                header("Location: login.php");
+                exit();
+            }
     } else {
         $_SESSION['error_message'] = "Usuário ou senha incorretos.";
         header("Location: login.php");

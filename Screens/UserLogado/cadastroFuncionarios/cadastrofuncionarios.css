@@ -6,7 +6,7 @@
     margin: 0;
     padding: 0;
     font-family: "Roboto", sans-serif;
-    font-size: 100.5%;
+    font-size: 62.5%;
 }
 
 :root {
@@ -23,38 +23,26 @@
 }
 
 /* Configurações gerais para o corpo */
-body {
-    background-color: var(--back-color);
-    color: var(--font-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
 
 /* Container principal */
 .container {
-    width: 80%;
-    max-width: 800px;
-    background-color: var(--header-color);
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    text-align: center;
+    flex-direction: column;
 }
 
 /* Títulos */
 h2 {
     color: var(--font-color);
-    margin-bottom: 20px;
-    font-size: 2.3rem;
+    margin: 20px auto;
+    font-size: 4.3rem;
     font-weight: 700;
 }
 
 .tabela-container {
-    max-height: 300px; /* Altura fixa para a área da tabela */
-    overflow-y: auto; /* Adiciona barra de rolagem vertical */
-    border: 1px solid #ddd; /* Borda para a área de rolagem */
+    height: 100%;
+    width: 100%;
+    max-width: 1280px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
     padding: 10px;
     margin-bottom: 20px;
 }
@@ -70,6 +58,7 @@ table, th, td {
 }
 
 th, td {
+    font-size: 2rem;
     padding: 10px;
     text-align: left;
     border-bottom: 1px solid #ddd;
@@ -90,6 +79,7 @@ tr:hover {
 
 /* Mensagens de feedback */
 .feedback-msg {
+    font-size: 2rem;
     padding: 10px;
     margin-bottom: 20px;
     border-radius: 5px;
@@ -99,15 +89,22 @@ tr:hover {
 }
 
 .success-msg {
+    font-size: 2rem;
     background-color: var(--success-color);
     color: #155724;
     border: 1px solid var(--success-border);
 }
 
 .error-msg {
+    font-size: 2rem;
     background-color: var(--error-color);
     color: #721c24;
     border: 1px solid var(--error-border);
+}
+
+.spans {
+    text-align: left;
+    color:#7B0000
 }
 
 /* Estilos para seções de formulário */
@@ -157,11 +154,11 @@ select:focus {
 .button {
     padding: 12px 24px;
     background-color: var(--btn-color);
-    color: #fff;
+    color: var(--font-color);
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 2rem;
     transition: background-color 0.3s;
 }
 

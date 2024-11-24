@@ -79,11 +79,11 @@
     gap: 20px;
     padding: 10px;
   }
-           .menu-logado .editar-perfil {
+  .menu-logado .editar-perfil {
 
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
-          }
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
   
   .menu-logado .cadastrar_funcionario {
 
