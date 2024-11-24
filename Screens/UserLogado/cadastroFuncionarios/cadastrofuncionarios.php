@@ -2,6 +2,7 @@
 // Conexão com o banco
 include '../../../dashboard_userOFC.php';
 $id_empresa = $_SESSION['user_id'];
+$name = $_SESSION['nome_empresa'];
 
 $mensagem = "";
 
@@ -91,6 +92,8 @@ $result = $conn->query($sql);
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" defer></script>
 
+    <script src="../../Geral/header.js" defer></script>
+    <script src="../logged_in_user.js" defer></script>
     <script src="cadastro_funcionario.js" defer></script>
     <script src="cpf_cep_rg.js" defer></script>
 </head>
@@ -98,7 +101,7 @@ $result = $conn->query($sql);
 <header>
     <div class="container">
         <nav class="nav-menu">
-            <div> <a href= "./user_logado.php" class="logo">PDA</a></div>
+            <div> <a href= "../user_logado.php" class="logo">PDA</a></div>
 
             <div class="size-text">
                 <button class="button-size_text" id="increase-font">A+</button>
@@ -114,7 +117,7 @@ $result = $conn->query($sql);
             </button> <!-- {class="user_logado" > END} -->
                 
             <div class="menu-logado">
-                <a class="editar-perfil" href="./editarPerfil/editarPerfil.html.php">
+                <a class="editar-perfil" href="../editarPerfil/editarPerfil.html.php">
                     <i class="fa-solid fa-gear"></i>
                     <div class="cf_text">
                         <h6 class="cf_title">Editar Perfil</h6>
@@ -122,7 +125,7 @@ $result = $conn->query($sql);
                     </div> <!-- class="cf_text" > END -->
                 </a> <!-- {class="nome_empresa" > END} -->
             
-                <a class="cadastrar_funcionario" href="./cadastroFuncionarios/cadastrofuncionarios.php">
+                <a class="cadastrar_funcionario" href="cadastrofuncionarios.php">
                     <i class="fa-solid fa-wrench"></i>
                     <div class="cf_text">
                         <h6 class="cf_title">Cadastro de funcionários</h6>
@@ -130,8 +133,8 @@ $result = $conn->query($sql);
                     </div> <!-- class="cf_text" > END -->
                 </a> <!-- {class="cadastrar_funcionario cdf" > END} -->
             
-                <a class="leave" href="./logout.php">
-                    <img class="image_leave" src="../../images/login_user/logout.png" alt="logout" />
+                <a class="leave" href="../logout.php">
+                    <img class="image_leave" src="../../../images/login_user/logout.png" alt="logout" />
                     <h6 class="text_leave">Sair da conta</h6>
                 </a> <!-- {class="leave" > END} -->
             </div> <!-- {class="menu-logado" > END} -->
@@ -216,12 +219,22 @@ $result = $conn->query($sql);
             </div>
             
             <div class="container_input">
-                <input type="text" name="turno" id="turno" class="input-field" placeholder="Turno" >
+                <select name="turno" id="turno">
+                    <option value="" selected>Selecione</option>
+                    <option value="Manhã">Manhã</option>
+                    <option value="Tarde">Tarde</option>
+                    <option value="Noite">Noite</option>
+                </select>
                 <span class="spans"></span>
             </div>
             
             <div class="container_input">
-                <input type="text" name="escolaridade" id="escolaridade" class="input-field" placeholder="Escolaridade" >
+            <select name="escolaridade" id="escolaridade">
+                    <option value="" selected>Selecione</option>
+                    <option value="AF">Analfabeto</option>
+                    <option value="EFI">Ensino Fundamental incompleto</option>
+                    <option value="EMI">Ensino Médio incompleto</option>
+                </select>
                 <span class="spans"></span>
             </div>
         </div>

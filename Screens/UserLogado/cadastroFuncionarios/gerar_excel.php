@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/PBD/conexao.php';
+include '../../../conexaoOFC.php';
 
 
 // Definir cabeçalhos para baixar o arquivo como Excel
@@ -12,7 +12,7 @@ header("Expires: 0");
 echo "<table border='1'>
         <tr>
             <th>ID</th>
-            <th>Nome</th>
+            <th>nome_func</th>
             <th>RG</th>
             <th>CPF</th>
             <th>Email</th>
@@ -30,17 +30,17 @@ echo "<table border='1'>
         </tr>";
 
 // Atualizando a consulta SQL para incluir os novos campos
-$sql = "SELECT id_funcionario, nome, rg, cpf, gmail, turno, sexo, escolaridade, data_nasc, cep, estado, cidade, bairro, rua, numero, complemento FROM funcionarios";
+$sql = "SELECT id_funcionario, nome_func, rg, cpf, email, turno, sexo, escolaridade, data_nasc, cep, estado, cidade, bairro, rua, numero, complemento FROM funcionarios";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         echo "<tr>
                 <td>{$row['id_funcionario']}</td>
-                <td>{$row['nome']}</td>
+                <td>{$row['nome_func']}</td>
                 <td>{$row['rg']}</td>
                 <td>{$row['cpf']}</td>
-                <td>{$row['gmail']}</td>
+                <td>{$row['email']}</td>
                 <td>{$row['turno']}</td>
                 <td>{$row['sexo']}</td>
                 <td>{$row['escolaridade']}</td>

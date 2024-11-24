@@ -131,7 +131,7 @@ tr:hover {
     max-width: 500px;
 }
 
-.container_input input {
+.container_input input, .container_input select {
     width: 100%;
     padding: 12px;
     font-size: 2rem;
@@ -186,6 +186,9 @@ button img {
     vertical-align: middle;
 }
 
+.menu-logado a:hover {
+    background: var(--back-color);
+  }
 
 /* Responsividade */
 @media (max-width: 768px) {
