@@ -26,6 +26,7 @@ $name = $_SESSION['nome_empresa'];
     <link rel="stylesheet" href="../../Screens/Homepage/Homepage - CSS/footer.css">
     <link rel="stylesheet" href="section_1_one.css">
     <link rel="stylesheet" href="./logged_in_user.css">
+    <link rel="stylesheet" href="user.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -40,6 +41,15 @@ $name = $_SESSION['nome_empresa'];
     <title>Portal da alfabetização</title>
 </head>
  <body>
+ 
+ <?php if ($is_admin): ?>
+        <!-- Conteúdo para administradores -->
+        <h2>Painel de Administração</h2>
+        <div class="menu">
+            <button onclick="location.href='gerenciar_usuarios.php'">Gerenciar Usuários</button>
+        </div>
+
+ <?php else: ?>
     <header>
         <div class="container">
             <nav class="nav-menu">
@@ -51,14 +61,7 @@ $name = $_SESSION['nome_empresa'];
                 </div> <!-- class="size-text" FIM -->
                     
                 <div><i id="mode-icon" class="fa-solid fa-moon icons"></i></div>
-                <?php if ($is_admin): ?>
-        <!-- Conteúdo para administradores -->
-        <h2>Painel de Administração</h2>
-        <ul>
-            <li><a href="gerenciar_usuarios.php">Gerenciar Usuários</a></li>
-            <li><a href="relatorios.php">Relatórios</a></li>
-        </ul>
-                <?php else: ?>
+    
 
                     <button class="user_logado">
                         <i class="fa-solid fa-user"></i>

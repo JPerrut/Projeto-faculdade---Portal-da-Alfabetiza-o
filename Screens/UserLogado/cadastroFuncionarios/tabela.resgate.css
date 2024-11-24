@@ -1,15 +1,35 @@
 
 
 .tabela-container {
-    justify-content: center;
-    text-align: center;
+    align-items: center;
     border-radius: 10px;
     box-shadow: 3px 4px 5px 4px rgba(0, 0, 0, 0.5);
     width: 100%;
     max-width: 900px;
-    margin-left: 20%;
+    margin-top: 25px;
   }
+
   
+  #buttons-table {
+    display: flex; 
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 0;
+  }
+ 
+  .button {
+    align-items: center;
+    padding: 12px 14px;
+    color: rgb(21, 46, 236);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 2rem;
+    transition: background-color 0.3s;
+}
+
   .tabela-container table {
       width: 100%;
       border-collapse: collapse;

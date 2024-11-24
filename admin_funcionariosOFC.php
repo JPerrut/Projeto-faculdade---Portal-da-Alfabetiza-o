@@ -1,13 +1,15 @@
 <?php
 include 'dashboard_adminOFC.php';
-include 'buscarOFC.php';
+
 
 $id_empresa = $_SESSION['user_id'];
 
 
 // Definir tabela e colunas com base no tipo de exibição
 $table = $_GET['table'] ?? 'funcionarios';
+$tableName = 'funcionarios';
 $columns = $_GET['columns'] ?? '*';
+include 'buscarOFC.php';
 include 'verificar_tabela.php';
 
 ?>

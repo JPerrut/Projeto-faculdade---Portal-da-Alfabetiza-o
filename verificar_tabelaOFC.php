@@ -11,4 +11,4 @@ if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) {
 }
 // Buscar os dados
 $result = fetchData($table, $columns, $where, $conn);
-  
+   

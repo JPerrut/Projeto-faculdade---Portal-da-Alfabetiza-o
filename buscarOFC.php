@@ -1,5 +1,6 @@
 <?php
 include 'conexaoOFC.php';
+ini_set('memory_limit', '512M'); // Aumenta para 256MB
 /**
  * Busca dados de uma tabela com condições opcionais.
  *
@@ -35,7 +36,8 @@ function fetchData($table, $columns, $where = null, $conn) {
  * @param mysqli_result $result Resultado da consulta.
  * @return string HTML da tabela.
  */
-function generateTable($result) {
+
+function generateTable($result, $tableName) {
     if ($result->num_rows == 0) {
         return "<p>Nenhum dado encontrado.</p>";
     }
@@ -47,15 +49,15 @@ function generateTable($result) {
     foreach ($columns as $column) {
         $table .= "<th>" . htmlspecialchars($column) . "</th>";
     }
-    $table .= "<th>Ações</th></tr>"; 
+    $table .= "<th>Ações</th></tr>";
 
     while ($row = $result->fetch_assoc()) {
         $table .= "<tr>";
         foreach ($columns as $column) {
             $table .= "<td>" . htmlspecialchars($row[$column]) . "</td>";
-        }  
-        // Botão de edição dinâmico
-        $table .= "<td><a href='edita.php?id=" . htmlspecialchars($row['id_empresa']) . "&table=" . htmlspecialchars($table) . "'>Editar</a></td>";
+        }
+        // Corrigir o uso de $tableName
+        $table .= "<td><a href='edita.php?id=" . htmlspecialchars($row['id_empresa']) . "&table=" . htmlspecialchars($tableName) . "'>Editar</a></td>";
         $table .= "</tr>";
     }
     $table .= "</table>";

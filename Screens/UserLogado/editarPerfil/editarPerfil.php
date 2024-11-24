@@ -1,6 +1,6 @@
 <?php
 include '../../../dashboard_userOFC.php';
-include '../../../buscarOFC.php';
+//include '../../../buscarOFC.php';
 
 // Obtém o ID da empresa (usuário logado)
 $id_empresa = $_SESSION['user_id'];

@@ -1,7 +1,7 @@
 <?php
 // Chamar o conexão.php
 // include '../conexao.php';
-include '../../conexao.php';
+include '../../conexaoOFC.php';
 
 
 if (isset($_POST['cadastrar'])) {
