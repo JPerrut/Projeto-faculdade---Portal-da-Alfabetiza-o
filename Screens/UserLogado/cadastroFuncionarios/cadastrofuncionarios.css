@@ -103,6 +103,7 @@ tr:hover {
 }
 
 .spans {
+    font-size: 2rem;
     text-align: left;
     color:#7B0000
 }
@@ -113,33 +114,32 @@ tr:hover {
     flex-direction: column;
     gap: 15px;
     margin-bottom: 20px;
+    width: 100%;
+    align-items: center;
 }
 
-.input-field,
-textarea,
-select {
+.form-section .input_group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
     width: 100%;
-    padding: 12px;
-    border: 1px solid var(--container-border);
-    border-radius: 5px;
-    background-color: var(--header-color);
-    color: var(--font-color);
-    font-size: 1rem;
+    max-width: 1200px;
 }
 
-input {
+.container_input {
+    width: 100%;
+    max-width: 500px;
+}
+
+.container_input input {
     width: 100%;
     padding: 12px;
+    font-size: 2rem;
     border: 1px solid var(--container-border);
     border-radius: 5px;
     background-color: var(--header-color);
     color: rgba(219, 219, 219, 0.7); /* Mesma cor usada para os outros placeholders */
     opacity: 1; /* Garante que o placeholder não fique esmaecido */
-}
-
-input[type="date"]::placeholder {
-    color: var(--font-color);
-    opacity: 0.7;
 }
 
 input:focus,
@@ -151,19 +151,34 @@ select:focus {
 }
 
 /* Botões */
+
+.buttons {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap:15px;
+}
+
 .button {
     padding: 12px 24px;
-    background-color: var(--btn-color);
+    background: linear-gradient(var(--back-color), var(--back-color)) padding-box, var(--blue-gradient-color) border-box;
+    border: 1px solid transparent;
     color: var(--font-color);
-    border: none;
-    border-radius: 5px;
+    border-radius: 12px;
     cursor: pointer;
     font-size: 2rem;
     transition: background-color 0.3s;
+    margin-top: 20px;
 }
 
 .button:hover {
-    background-color: var(--btn-hover);
+    opacity: 80%;
+}
+
+#rua, #bairro, #cidade, #estado {
+    background: #161616;
+    cursor: not-allowed;
 }
 
 button img {
@@ -171,33 +186,6 @@ button img {
     vertical-align: middle;
 }
 
-button[type="submit"] {
-    margin-top: 20px;
-}
-
-/* Ajuste para botões em formulários */
-button,
-input[type="submit"] {
-    display: inline-block;
-    cursor: pointer;
-}
-
-/* Personalização para inputs e selects */
-input[type="text"],
-input[type="number"],
-input[type="email"],
-input[type="password"],
-textarea,
-select {
-    background-color: var(--header-color);
-    color: var(--font-color);
-}
-
-input[type="text"]::placeholder,
-input[type="email"]::placeholder,
-textarea::placeholder {
-    color: rgba(219, 219, 219, 0.7);
-}
 
 /* Responsividade */
 @media (max-width: 768px) {

@@ -190,41 +190,98 @@ $result = $conn->query($sql);
         <h2>Adicionar ou Editar Usuário</h2>
 
         <form method="post" class="form-section" id="form">
-            <input type="hidden" name="id_funcionario" id="id_funcionario">
-            <span class="spans"></span>
-            <input type="text" name="nome_func" id="nome_func" class="input-field" placeholder="Nome" >
-            <span class="spans"></span>
-            <input type="text" name="email" id="email" class="input-field" placeholder="email" >
-            <span class="spans"></span>
-            <input type="text" name="data_nasc" id="data_nasc" class="input-field" placeholder="Data de Nascimento" >
-            <span class="spans"></span>
-            <input type="text" name="sexo" id="sexo" class="input-field" placeholder="Sexo" >
-            <span class="spans"></span>
-            <input type="text" name="turno" id="turno" class="input-field" placeholder="Turno" >
-            <span class="spans"></span>
-            <input type="text" name="escolaridade" id="escolaridade" class="input-field" placeholder="Escolaridade" >
-            <span class="spans"></span>
-            <input type="text" name="cpf" id="cpf" class="input-field" placeholder="CPF" >
-            <span class="spans"></span>
-            <input type="text" name="rg" id="rg" class="input-field" placeholder="RG" >
-            <span class="spans"></span>
-            <input type="text" name="cep" id="cep" class="input-field" placeholder="CEP"  onblur="buscaCep()">
-            <span class="spans"></span>
-            <input type="text" name="rua" id="rua" class="input-field" placeholder="Rua" >
-            <span class="spans"></span>
-            <input type="text" name="bairro" id="bairro" class="input-field" placeholder="Bairro" >
-            <span class="spans"></span>
-            <input type="text" name="cidade" id="cidade" class="input-field" placeholder="Cidade" >
-            <span class="spans"></span>
-            <input type="text" name="estado" id="estado" class="input-field" placeholder="Estado" >
-            <span class="spans"></span>
-            <input type="text" name="numero" id="numero" class="input-field" placeholder="Número" >
-            <span class="spans"></span>
-            <input type="text" name="complemento" id="complemento" class="input-field" placeholder="Complemento">
-            <span class="spans"></span>
+        <input type="hidden" name="id_funcionario" id="id_funcionario">
+     
+        <div class="input_group">
+            <div class="container_input">
+                <input type="text" name="nome_func" id="nome_func" class="input-field" placeholder="Nome" >
+                <span class="spans"></span>
+            </div>
             
-            <button type="submit" name="adicionar" class="button">Adicionar</button>
-            <button type="submit" name="editar" class="button">Salvar Edição</button>
+            <div class="container_input">
+                <input type="text" name="email" id="email" class="input-field" placeholder="email" >
+                <span class="spans"></span>
+            </div>
+            
+            <div class="container_input">
+                <input type="text" name="data_nasc" id="data_nasc" class="input-field" placeholder="Data de Nascimento" >
+                <span class="spans"></span>
+            </div>
+        </div>
+
+        <div class="input_group">
+            <div class="container_input">
+                <input type="text" name="sexo" id="sexo" class="input-field" placeholder="Sexo" >
+                <span class="spans"></span>
+            </div>
+            
+            <div class="container_input">
+                <input type="text" name="turno" id="turno" class="input-field" placeholder="Turno" >
+                <span class="spans"></span>
+            </div>
+            
+            <div class="container_input">
+                <input type="text" name="escolaridade" id="escolaridade" class="input-field" placeholder="Escolaridade" >
+                <span class="spans"></span>
+            </div>
+        </div>
+
+        <div class="input_group">
+            <div class="container_input">
+                <input type="text" name="cpf" id="cpf" class="input-field" placeholder="CPF" >
+                <span class="spans"></span>
+            </div>
+            
+            <div class="container_input">
+                <input type="text" name="rg" id="rg" class="input-field" placeholder="RG" >
+                <span class="spans"></span>
+            </div>
+            
+            <div class="container_input">
+                <input type="text" name="cep" id="cep" class="input-field" placeholder="CEP">
+                <span class="spans"></span>
+            </div>
+        </div>
+
+        <div class="input_group">
+            <div class="container_input">
+                <input type="text" name="rua" id="rua" class="input-field" placeholder="Rua" readonly>
+                <span class="spans"></span>
+            </div>
+            
+            <div class="container_input">
+                <input type="text" name="bairro" id="bairro" class="input-field" placeholder="Bairro" readonly>
+                <span class="spans"></span>
+            </div>
+            
+            <div class="container_input">
+                <input type="text" name="cidade" id="cidade" class="input-field" placeholder="Cidade" readonly>
+                <span class="spans"></span>
+            </div>
+        </div>
+
+        <div class="input_group">
+            <div class="container_input">
+                <input type="text" name="estado" id="estado" class="input-field" placeholder="Estado" readonly>
+                <span class="spans"></span>
+            </div>
+            
+            <div class="container_input">
+                <input type="text" name="numero" id="numero" class="input-field" placeholder="Número" >
+                <span class="spans"></span>
+            </div>
+            
+            <div class="container_input">
+                <input type="text" name="complemento" id="complemento" class="input-field" placeholder="Complemento (opicional)">
+                <span class="spans"></span>
+            </div>
+        </div>
+
+            <div class="buttons">
+                <button type="submit" name="adicionar" class="button">Adicionar</button>
+                <button type="submit" name="editar" class="button">Salvar Edição</button>
+            </div>
+        
         </form>
     </div>
 <!-- Script para remover mensagens -->
