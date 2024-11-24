@@ -4,7 +4,7 @@ include 'editarPerfil.php';
 // Exibe a tabela com os dados cadastrados
 $table = $_GET['table'] ?? 'empresas';
 $columns = $_GET['columns'] ?? 'nome_empresa, cnpj';
-include '../../../verificar_tabela.php';
+include '../../../verificar_tabelaOFC.php';
 
 $name = $_SESSION['nome_empresa'];
 ?> 

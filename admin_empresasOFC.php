@@ -7,7 +7,7 @@ $id_empresa = $_SESSION['user_id'];
 
 // Definir tabela e colunas com base no tipo de exibição
 $table = $_GET['table'] ?? 'empresas';
-$columns = $_GET['columns'] ?? 'nome_empresa, cnpj';
+$columns = $_GET['columns'] ?? '*';
 include 'verificar_tabela.php';
 
 ?>
