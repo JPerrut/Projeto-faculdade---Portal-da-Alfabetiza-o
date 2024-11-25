@@ -85,9 +85,9 @@ $name = $_SESSION['nome_empresa'];
             <p style="color: red;"><?php echo $error; ?></p>
             <?php endif; ?> 
                     
-            <form method="POST">
-                <div class="container_form">
 
+            <div class="container_form">
+                <form method="post">
                     <div class="input_group">
                         <div class="container_input">
                             <label for="email_atual">Email Atual:</label><br>
@@ -99,6 +99,10 @@ $name = $_SESSION['nome_empresa'];
                             <input type="email" id="novo_email" name="novo_email"><br><br>
                         </div>
                     </div>
+                    <button type="submit">Atualizar email</button>
+                </form>
+
+                <form method="POST">
                     <div class="input_group">
                         <div class="container_input">
                             <label for="senha_atual">Senha Atual:</label><br>
@@ -115,9 +119,9 @@ $name = $_SESSION['nome_empresa'];
                             <input type="password" id="confirmar_senha" name="confirmar_senha"><br><br>
                         </div>
                     </div>
-                </div>
-                <button type="submit">Atualizar Dados</button>
-            </form>
+                    <button type="submit">Atualizar senha</button>
+                <form method="POST">
+            </div>
                 
             <?php 
             // Fechar a conexão

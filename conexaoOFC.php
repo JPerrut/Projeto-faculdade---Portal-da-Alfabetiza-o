@@ -3,7 +3,7 @@
 // Configurações do banco de dados
 $host = "localhost";
 $user = "root";
-$password = "";
+$password = "7634";
 $dbname = "portal";
 
 // Criar conexão com o banco de dados

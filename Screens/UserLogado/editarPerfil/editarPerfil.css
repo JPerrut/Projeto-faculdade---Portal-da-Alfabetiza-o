@@ -19,27 +19,6 @@ main {
   align-items: center;
 }
 
-.container form {
-  padding: 20px;
-  margin: 10px;
-  border-radius: 10px;
-  box-shadow: 3px 4px 5px 4px rgba(0, 0, 0, 0.5);
-  width: 100%;
-  max-width: 800px;
-  text-align: center;
-}
-
-form .container_form {
-  display: flex;
-  gap: 2rem;
-}
-
-form .input_group {
-  display: block;
-  gap: 8px;
-  width: 100%;
-}
-
 .container h1 {
   text-transform: uppercase;
   text-align: center;
@@ -50,6 +29,31 @@ form .input_group {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: all 0.3s;
+}
+
+.container_form {
+  display: flex;
+  width: 100%;
+  gap: 2rem;
+}
+
+.container_form form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 3px 4px 5px 4px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+}
+
+form .input_group {
+  gap: 8px;
+  width: 100%;
 }
 
   /* ========================

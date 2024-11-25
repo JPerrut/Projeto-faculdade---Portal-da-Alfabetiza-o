@@ -72,9 +72,8 @@ main {
   justify-content: center;
   border-left: 1px solid var(--container-border);
   border-right: 1px solid var(--container-border);
-  border-bottom: 1px solid var(--container-border);
   background-color: var(--back-color);
-  margin-bottom: 20px;
+  padding: 20px 0;
 }
 
 a {
