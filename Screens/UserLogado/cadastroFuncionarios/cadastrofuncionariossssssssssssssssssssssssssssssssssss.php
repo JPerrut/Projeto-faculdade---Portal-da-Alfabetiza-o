@@ -1,87 +1,68 @@
-<?php   
+<?php  
 // Conexão com o banco
 include '../../../dashboard_userOFC.php';
-
-
-$id_empresa = $_SESSION['user_id'] ?? null;
-$name = $_SESSION['nome_empresa'] ?? null;
+$id_empresa = $_SESSION['user_id'];
+$name = $_SESSION['nome_empresa'];
 
 $mensagem = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!$id_empresa) {
-        $mensagem = "<div class='feedback-msg error-msg'>Erro: Empresa não identificada.</div>";
-    } else {
-        if (isset($_POST['adicionar'])) {
+    $mensagem = ""; 
+    if (isset($_POST['adicionar'])) {
+        try {
             $sql = "INSERT INTO funcionarios (nome_func, email, data_nasc, numero, complemento, rua, bairro, cidade, 
                 estado, cep, escolaridade, sexo, turno, cpf, rg, id_empresa) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-            $stmt = $conn->prepare($sql);
-            if ($stmt) {
-                $stmt->bind_param(
-                    "sssssssssssssssi",
-                    $_POST['nome_func'],
-                    $_POST['email'],
-                    $_POST['data_nasc'],
-                    $_POST['numero'],
-                    $_POST['complemento'],
-                    $_POST['rua'],
-                    $_POST['bairro'],
-                    $_POST['cidade'],
-                    $_POST['estado'],
-                    $_POST['cep'],
-                    $_POST['escolaridade'],
-                    $_POST['sexo'],
-                    $_POST['turno'],
-                    $_POST['cpf'],
-                    $_POST['rg'],
-                    $id_empresa
-                );
-
-                if ($stmt->execute()) {
-                    $mensagem = "<div class='feedback-msg success-msg'>Novo funcionário adicionado com sucesso!</div>";
+                    VALUES ('{$_POST['nome_func']}', '{$_POST['email']}', '{$_POST['data_nasc']}', '{$_POST['numero']}', 
+                    '{$_POST['complemento']}', '{$_POST['rua']}', '{$_POST['bairro']}', '{$_POST['cidade']}', 
+                    '{$_POST['estado']}', '{$_POST['cep']}', '{$_POST['escolaridade']}', '{$_POST['sexo']}', 
+                    '{$_POST['turno']}', '{$_POST['cpf']}', '{$_POST['rg']}', $id_empresa)";
+            $conn->query($sql);
+            $mensagem = "<div class='feedback-msg success-msg'>Novo usuário adicionado com sucesso!</div>";
+        } catch (mysqli_sql_exception $e) {
+            if ($e->getCode() == 1062) {
+                if (strpos($e->getMessage(), 'cpf') !== false) {
+                    $mensagem = "<div class='feedback-msg error-msg'>Erro: O CPF já está em uso.</div>";
+                } elseif (strpos($e->getMessage(), 'rg') !== false) {
+                    $mensagem = "<div class='feedback-msg error-msg'>Erro: O RG já está em uso.</div>";
                 } else {
-                    $mensagem = "<div class='feedback-msg error-msg'>Erro ao adicionar funcionário: " . htmlspecialchars($stmt->error) . "</div>";
+                    $mensagem = "<div class='feedback-msg error-msg'>Erro: Dados já cadastrados.</div>";
                 }
-
-                $stmt->close();
             } else {
-                $mensagem = "<div class='feedback-msg error-msg'>Erro de preparação na consulta: " . htmlspecialchars($conn->error) . "</div>";
+                $mensagem = "<div class='feedback-msg error-msg'>Erro ao adicionar usuário: " . $e->getMessage() . "</div>";
             }
         }
     }
-}
+    
+        
+    if (isset($_POST['editar'])) {
+        $id = isset($_POST['id_funcionario']) ? $_POST['id_funcionario'] : null;
+        $nome_func = isset($_POST['nome_func']) ? $_POST['nome_func'] : null;
+        $email = isset($_POST['email']) ? $_POST['email'] : null;
+        $data_nasc = isset($_POST['data_nasc']) ? $_POST['data_nasc'] : null;
+        $numero = isset($_POST['numero']) ? $_POST['numero'] : null;
+        $complemento = isset($_POST['complemento']) ? $_POST['complemento'] : null;
+        $rua = isset($_POST['rua']) ? $_POST['rua'] : null;
+        $bairro = isset($_POST['bairro']) ? $_POST['bairro'] : null;
+        $cidade = isset($_POST['cidade']) ? $_POST['cidade'] : null;
+        $estado = isset($_POST['estado']) ? $_POST['estado'] : null;
+        $cep = isset($_POST['cep']) ? $_POST['cep'] : null;
+        $escolaridade = isset($_POST['escolaridade']) ? $_POST['escolaridade'] : null;
+        $sexo = isset($_POST['sexo']) ? $_POST['sexo'] : null;
+        $turno = isset($_POST['turno']) ? $_POST['turno'] : null;
+        $cpf = isset($_POST['cpf']) ? $_POST['cpf'] : null;
+        $rg = isset($_POST['rg']) ? $_POST['rg'] : null;
 
-if (isset($_POST['editar'])) {
-    $id = isset($_POST['id_funcionario']) ? $_POST['id_funcionario'] : null;
-    $nome_func = isset($_POST['nome_func']) ? $_POST['nome_func'] : null;
-    $email = isset($_POST['email']) ? $_POST['email'] : null;
-    $data_nasc = isset($_POST['data_nasc']) ? $_POST['data_nasc'] : null;
-    $numero = isset($_POST['numero']) ? $_POST['numero'] : null;
-    $complemento = isset($_POST['complemento']) ? $_POST['complemento'] : null;
-    $rua = isset($_POST['rua']) ? $_POST['rua'] : null;
-    $bairro = isset($_POST['bairro']) ? $_POST['bairro'] : null;
-    $cidade = isset($_POST['cidade']) ? $_POST['cidade'] : null;
-    $estado = isset($_POST['estado']) ? $_POST['estado'] : null;
-    $cep = isset($_POST['cep']) ? $_POST['cep'] : null;
-    $escolaridade = isset($_POST['escolaridade']) ? $_POST['escolaridade'] : null;
-    $sexo = isset($_POST['sexo']) ? $_POST['sexo'] : null;
-    $turno = isset($_POST['turno']) ? $_POST['turno'] : null;
-    $cpf = isset($_POST['cpf']) ? $_POST['cpf'] : null;
-    $rg = isset($_POST['rg']) ? $_POST['rg'] : null;
-
-    $sql = "UPDATE funcionarios SET nome_func='$nome_func', email='$email', data_nasc='$data_nasc', 
-    numero='$numero', complemento='$complemento', rua='$rua', bairro='$bairro', cidade='$cidade', estado='$estado', 
-    cep='$cep', escolaridade='$escolaridade', sexo='$sexo', turno='$turno', cpf='$cpf', rg='$rg' WHERE id_funcionario=$id";
-    if ($conn->query($sql) === TRUE) {
-        $mensagem = "<div id='feedback' class='feedback-msg success-msg'>Usuário editado com sucesso!</div>";
-    } else {
-        $mensagem = "<div id='feedback' class='feedback-msg error-msg'>Erro ao editar usuário: " . $conn->error . "</div>";
+        $sql = "UPDATE funcionarios SET nome_func='$nome_func', email='$email', data_nasc='$data_nasc', 
+        numero='$numero', complemento='$complemento', rua='$rua', bairro='$bairro', cidade='$cidade', estado='$estado', 
+        cep='$cep', escolaridade='$escolaridade', sexo='$sexo', turno='$turno', cpf='$cpf', rg='$rg' WHERE id_funcionario=$id";
+        if ($conn->query($sql) === TRUE) {
+            $mensagem = "<div id='feedback' class='feedback-msg success-msg'>Usuário editado com sucesso!</div>";
+        } else {
+            $mensagem = "<div id='feedback' class='feedback-msg error-msg'>Erro ao editar usuário: " . $conn->error . "</div>";
+        }
     }
-}
 
-if (isset($_POST['excluir'])) {
+    if (isset($_POST['excluir'])) {
     $id = $_POST['id'];
 
     $sql = "DELETE FROM funcionarios WHERE id_funcionario=$id";
@@ -90,16 +71,11 @@ if (isset($_POST['excluir'])) {
     } else {
         $mensagem = "<div id='feedback' class='feedback-msg error-msg'>Erro ao excluir usuário: " . $conn->error . "</div>";
     }
+    }
 }
 
-
-$sql = "SELECT id_funcionario, nome_func, email, data_nasc, numero, complemento, rua, bairro, cidade, estado, cep, escolaridade, sexo, turno, cpf, rg 
-        FROM funcionarios 
-        WHERE id_empresa = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $id_empresa);
-$stmt->execute();
-$result = $stmt->get_result();
+$sql = "SELECT id_funcionario, nome_func, email, data_nasc, numero, complemento, rua, bairro, cidade, estado, cep, escolaridade, sexo, turno, cpf, rg FROM funcionarios";
+$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -318,7 +294,6 @@ $result = $stmt->get_result();
             <div class="buttons">
                 <button type="submit" name="adicionar" class="button">Adicionar</button>
                 <button type="submit" name="editar" class="button">Salvar Edição</button>
-                <button type="button" id="clearBtn" class="button">Limpar</button>
             </div>
         
         </form>
