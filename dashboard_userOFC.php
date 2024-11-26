@@ -2,7 +2,7 @@
 session_start(); //Faz a verificação 
 include 'conexaoOFC.php';
 if (!isset($_SESSION['user_id'])) {
-    header("Location: /PBD/Screens/Login/login.html");
+    header("Location: ./Screens/Login/login.php");
     exit();
 }
 
