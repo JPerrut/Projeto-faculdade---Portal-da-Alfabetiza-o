@@ -139,7 +139,7 @@ $name = $_SESSION['nome_empresa'];
 
         </main>
         <?php endif; ?>
-        <footer>
+        <footer class="footer">
             <h2>Portal da alfabetização</h2>
             
             <ul class="menu_devs">

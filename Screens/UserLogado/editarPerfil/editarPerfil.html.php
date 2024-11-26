@@ -79,10 +79,10 @@ $name = $_SESSION['nome_empresa'];
             <!-- Formulário de alteração de email e senha -->
             <h1>Alterar Email e Senha</h1>
             <?php if ($message): ?>
-            <p style="color: green;"><?php echo $message; ?></p>
+            <p id="validateMessage"><?php echo $message; ?></p>
             <?php endif; ?>
             <?php if ($error): ?>
-            <p style="color: red;"><?php echo $error; ?></p>
+            <p id="errorMessage"><?php echo $error; ?></p>
             <?php endif; ?> 
                     
 

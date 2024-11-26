@@ -116,6 +116,15 @@ form button:hover {
   background: var(--back-color);
 }
 
+.container #validateMessage {
+  color: green;
+  font-size: 2.3rem;
+}
+.container #errorMessage {
+  color: #B70000;
+  font-size: 2.3rem;
+}
+
   /* ==========
   BUTTONS > END
   ============= */
