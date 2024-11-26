@@ -27,6 +27,7 @@ $name = $_SESSION['nome_empresa'];
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
     <script src="../../Geral/header.js" defer></script>
     <script src="../logged_in_user.js" defer></script>
+    <script src="editarPerfil.js" defer></script>
 </head>
 <body> 
     <header>
@@ -78,49 +79,67 @@ $name = $_SESSION['nome_empresa'];
         <div class="container">
             <!-- Formulário de alteração de email e senha -->
             <h1>Alterar Email e Senha</h1>
-            <?php if ($message): ?>
-            <p id="validateMessage"><?php echo $message; ?></p>
-            <?php endif; ?>
             <?php if ($error): ?>
             <p id="errorMessage"><?php echo $error; ?></p>
             <?php endif; ?> 
                     
 
             <div class="container_form">
-                <form method="post">
+                <form method="post" id="form_email">
                     <div class="input_group">
                         <div class="container_input">
-                            <label for="email_atual">Email Atual:</label><br>
-                            <input type="email" id="email_atual" name="email_atual"><br><br>
+                            <label for="email_atual">Email Atual:</label>
+                            <input type="email" id="email_atual" name="email_atual">
+                            <span class="spans"></span>
                         </div>
                         
                         <div class="container_input">
-                            <label for="novo_email">Novo Email:</label><br>
-                            <input type="email" id="novo_email" name="novo_email"><br><br>
+                            <label for="novo_email">Novo Email:</label>
+                            <input type="email" id="novo_email" name="novo_email">
+                            <span class="spans"></span>
                         </div>
                     </div>
+
+                    <?php if ($messageEmail): ?>
+                        <p id="validateMessage"><?php echo $messageEmail; ?></p>
+                    <?php endif; ?>
+                    <?php if ($errorEmail): ?>
+                        <p id="errorMessage"><?php echo $errorEmail; ?></p>
+                    <?php endif; ?> 
+
                     <button type="submit">Atualizar email</button>
                 </form>
 
-                <form method="POST">
+                <form method="POST" id="form_senha">
                     <div class="input_group">
                         <div class="container_input">
-                            <label for="senha_atual">Senha Atual:</label><br>
-                            <input type="password" id="senha_atual" name="senha_atual"><br><br>
+                            <label for="senha_atual">Senha Atual:</label>
+                            <input type="password" id="senha_atual" name="senha_atual" maxlength="8">
+                            <span class="spans"></span>
                         </div>
                         
                         <div class="container_input">
-                            <label for="nova_senha">Nova Senha:</label><br>
-                            <input type="password" id="nova_senha" name="nova_senha"><br><br>
+                            <label for="nova_senha">Nova Senha:</label>
+                            <input type="password" id="nova_senha" name="nova_senha" maxlength="8">
+                            <span class="spans"></span>
                         </div>
                         
                         <div class="container_input">
-                            <label for="confirmar_senha">Confirmar Nova Senha:</label><br>
-                            <input type="password" id="confirmar_senha" name="confirmar_senha"><br><br>
+                            <label for="confirmar_senha">Confirmar Nova Senha:</label>
+                            <input type="password" id="confirmar_senha" name="confirmar_senha" maxlength="8">
+                            <span class="spans"></span>
                         </div>
                     </div>
+
+                    <?php if ($messageSenha): ?>
+                        <p id="validateMessage"><?php echo $messageSenha; ?></p>
+                    <?php endif; ?>
+                    <?php if ($errorSenha): ?>
+                        <p id="errorMessage"><?php echo $errorSenha; ?></p>
+                    <?php endif; ?> 
+
                     <button type="submit">Atualizar senha</button>
-                <form method="POST">
+                </form>
             </div>
                 
             <?php 

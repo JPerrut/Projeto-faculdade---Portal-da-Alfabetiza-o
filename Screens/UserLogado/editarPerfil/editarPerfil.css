@@ -125,6 +125,12 @@ form button:hover {
   font-size: 2.3rem;
 }
 
+.input_group .spans {
+  margin-left: 6px;
+  color: #B70000;
+  font-size: 1.8rem;
+}
+
   /* ==========
   BUTTONS > END
   ============= */

@@ -38,12 +38,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt->bind_param('si', $novo_email, $id_empresa);
 
                 if ($stmt->execute()) {
-                    $message .= "Email atualizado com sucesso! ";
+                    $messageEmail .= "Email atualizado com sucesso! ";
                 } else {
-                    $error .= "Erro ao atualizar o email. ";
+                    $errorEmail .= "Erro ao atualizar o email. ";
                 }
             } else {
-                $error .= "O email atual está incorreto. ";
+                $errorEmail .= "O email atual está incorreto. ";
             }
         }
 
@@ -56,15 +56,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt->bind_param('si', $nova_senha_hash, $id_empresa);
 
                 if ($stmt->execute()) {
-                    $message .= "Senha atualizada com sucesso!";
+                    $messageSenha .= "Senha atualizada com sucesso!";
                 } else {
-                    $error .= "Erro ao atualizar a senha.";
+                    $errorSenha .= "Erro ao atualizar a senha.";
                 }
             } else {
-                $error .= "As novas senhas não coincidem.";
+                $errorSenha .= "As novas senhas não coincidem.";
             }
         } elseif ($nova_senha) {
-            $error .= "A senha atual está incorreta.";
+            $errorSenha .= "A senha atual está incorreta.";
         }
     } else {
         $error = "Usuário não encontrado.";
