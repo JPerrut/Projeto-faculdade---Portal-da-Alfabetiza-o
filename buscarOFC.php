@@ -18,7 +18,7 @@ function fetchData($tableName, $columns, $where = null, $conn) {
             $conditions[] = "$column = ?";
         }
         $sql .= " WHERE " . implode(" AND ", $conditions);
-    }
+    }  
 
     $stmt = $conn->prepare($sql);
     if ($where) {
@@ -37,7 +37,7 @@ function fetchData($tableName, $columns, $where = null, $conn) {
  * @return string HTML da tabela.
  */
 
-function generateTable($result, $tableName) {
+function generateTable($result, $tableName, $columns) {
     if ($result->num_rows == 0) {
         return "<p>Nenhum dado encontrado.</p>";
     }
@@ -57,7 +57,7 @@ function generateTable($result, $tableName) {
             $table .= "<td>" . htmlspecialchars($row[$column]) . "</td>";
         }
         // Corrigir o uso de $tableName
-        $table .= "<td><a href='edita.php?id=" . htmlspecialchars($row['id_empresa']) . "&table=" . htmlspecialchars($tableName) . "'>Editar</a></td>";
+        $table .= "<td><a href='edita.php?id=" . htmlspecialchars($row['id_empresa']) . "&table=" . htmlspecialchars($tableName) . "&columns=" . htmlspecialchars($columns) . "'>Editar</a></td>";
         $table .= "</tr>";
     }
     $table .= "</table>";

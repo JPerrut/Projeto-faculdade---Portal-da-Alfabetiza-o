@@ -3,9 +3,11 @@ session_start();
 include 'conexaoOFC.php';
 
 // Captura os parâmetros
+
+$columns = $_GET['columns'] ?? null;
 $tableName = $_GET['table'] ?? null;
 $isAdmin = $_GET['isAdmin'] ?? null;
-$coluna = $_GET['coluna'] ?? null;
+$id = isset($_GET['id']) ? intval($_GET['id']) : null;
 if (!$tableName) {
     die("Tabela inválida.");
 }
@@ -15,35 +17,50 @@ $query = "SELECT id_empresa FROM $tableName";
 $stmt = $conn->prepare($query);
 $stmt->execute();
 $result = $stmt->get_result();
+ 
+$tabelasAceitas = ['empresas', 'funcionarios']; // Lista de tabelas válidas
+if (!in_array($tableName, $tabelasAceitas)) {
+    die("Tabela inválida.");
+} 
 
-// Armazena a informação em uma variável global, caso exista
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $idempresa = $row['id_empresa']; // 
-    $_SESSION['id_empresa'] = $idempresa; // Opcional: também armazena na sessão
-} else {
-    $globalVar = null; // Define como nulo caso nenhum dado seja encontrado
-}
-$idempresa = $_SESSION['id_empresa'];
+$colunasAceitas = ['id_empresa', 'nome_empresa', 'cnpj', 'email'];
+
+// Divide as colunas passadas (caso haja mais de uma)
+$arrayColunas = explode(',', $columns);
+
+// Verifica se cada coluna passada é válida
+foreach ($arrayColunas as $column) {
+    if (!in_array(trim($column), $colunasAceitas)) {
+        die("Coluna inválida: $column");
+    }  
+}  
+  
+// Lista de colunas permitidas
+
+if (filter_var($id, FILTER_VALIDATE_INT) === false) {
+    die("ID inválido. O valor fornecido não é um inteiro.");
+} 
+
 // Busca os dados existentes
-$query = "SELECT * FROM $tableName WHERE id_empresa = ?";
+$query = "SELECT $columns FROM $tableName WHERE id_empresa = $id";
 $stmt = $conn->prepare($query);
-$stmt->bind_param('i', $idempresa);
+$stmt->bind_param('i', $id);
 $stmt->execute();
 $result = $stmt->get_result();
 $data = $result->fetch_assoc();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Atualiza os dados
+    // Atualiza os dados  
+
     $updates = [];
     foreach ($_POST as $column => $value) {
         $updates[] = "$column = ?";
     }
-    $sql = "UPDATE $tableName SET " . implode(", ", $updates) . " WHERE id_empresa = ?";
+    $sql = "UPDATE $tableName SET " . implode(", ", $updates) . " WHERE id_empresa = $id";
     $stmt = $conn->prepare($sql);
 
-    $types = str_repeat('s', count($_POST)) . 'i';
-    $params = array_merge(array_values($_POST), [$idempresa]);
+    $types = str_repeat('s', count($columns));
+    $params = array_merge(array_values($columns),);
     $stmt->bind_param($types, ...$params);
     $stmt->execute();
 
