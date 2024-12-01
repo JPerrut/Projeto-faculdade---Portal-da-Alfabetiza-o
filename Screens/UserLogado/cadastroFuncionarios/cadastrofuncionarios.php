@@ -110,6 +110,7 @@ $result = $stmt->get_result();
     <link rel="stylesheet" href="cadastrofuncionarios.css">
     <link rel="stylesheet" href="../../Geral/header.css">
     <link rel="stylesheet" href="../../Geral/global.css">
+    <link rel="stylesheet" href="../../Homepage/Homepage - CSS/main.css">
     <link rel="stylesheet" href="../logged_in_user.css">
     <link rel="stylesheet" href="../../../Screens/Homepage/Homepage - CSS/footer.css">
 
@@ -218,102 +219,107 @@ $result = $stmt->get_result();
         <h2>Adicionar ou Editar Usuário</h2>
 
         <form method="post" class="form-section" id="form">
-        <input type="hidden" name="id_funcionario" id="id_funcionario">
-     
-        <div class="input_group">
-            <div class="container_input">
-                <input type="text" name="nome_func" id="nome_func" class="input-field" placeholder="Nome" >
-                <span class="spans"></span>
+            <input type="hidden" name="id_funcionario" id="id_funcionario">
+        
+            <div class="input_group">
+                <div class="container_input">
+                    <input type="text" name="nome_func" id="nome_func" class="input-field" placeholder="Nome" >
+                    <span class="spans"></span>
+                </div>
+                
+                <div class="container_input">
+                    <input type="text" name="email" id="email" class="input-field" placeholder="email" >
+                    <span class="spans"></span>
+                </div>
+                
+                <div class="container_input">
+                    <input type="text" name="data_nasc" id="data_nasc" class="input-field" placeholder="Data de Nascimento" >
+                    <span class="spans"></span>
+                </div>
             </div>
-            
-            <div class="container_input">
-                <input type="text" name="email" id="email" class="input-field" placeholder="email" >
-                <span class="spans"></span>
-            </div>
-            
-            <div class="container_input">
-                <input type="text" name="data_nasc" id="data_nasc" class="input-field" placeholder="Data de Nascimento" >
-                <span class="spans"></span>
-            </div>
-        </div>
 
-        <div class="input_group">
-            <div class="container_input">
-                <input type="text" name="sexo" id="sexo" class="input-field" placeholder="Sexo" >
-                <span class="spans"></span>
-            </div>
-            
-            <div class="container_input">
-                <select name="turno" id="turno">
-                    <option value="" selected>Selecione</option>
-                    <option value="Manhã">Manhã</option>
-                    <option value="Tarde">Tarde</option>
-                    <option value="Noite">Noite</option>
-                </select>
-                <span class="spans"></span>
-            </div>
-            
-            <div class="container_input">
-            <select name="escolaridade" id="escolaridade">
-                    <option value="" selected>Selecione</option>
-                    <option value="AF">Analfabeto</option>
-                    <option value="EFI">Ensino Fundamental incompleto</option>
-                    <option value="EMI">Ensino Médio incompleto</option>
-                </select>
-                <span class="spans"></span>
-            </div>
-        </div>
+            <div class="input_group">
+                <div class="container_input">
+                    <select name="sexo" id="sexo">
+                        <option value="" selected>Sexo:</option>
+                        <option value="Manhã">Masculino</option>
+                        <option value="Tarde">Feminino</option>
+                        <option value="Noite">Outros</option>
+                    </select>
+                    <span class="spans"></span>
+                </div>
 
-        <div class="input_group">
-            <div class="container_input">
-                <input type="text" name="cpf" id="cpf" class="input-field" placeholder="CPF" >
-                <span class="spans"></span>
+                <div class="container_input">
+                    <select name="turno" id="turno">
+                        <option value="" selected>Turno:</option>
+                        <option value="Manhã">Manhã</option>
+                        <option value="Tarde">Tarde</option>
+                        <option value="Noite">Noite</option>
+                    </select>
+                    <span class="spans"></span>
+                </div>
+                
+                <div class="container_input">
+                <select name="escolaridade" id="escolaridade">
+                        <option value="" selected>Escolaridade</option>
+                        <option value="AF">Analfabeto</option>
+                        <option value="EFI">Ensino Fundamental incompleto</option>
+                        <option value="EMI">Ensino Médio incompleto</option>
+                    </select>
+                    <span class="spans"></span>
+                </div>
             </div>
-            
-            <div class="container_input">
-                <input type="text" name="rg" id="rg" class="input-field" placeholder="RG" >
-                <span class="spans"></span>
-            </div>
-            
-            <div class="container_input">
-                <input type="text" name="cep" id="cep" class="input-field" placeholder="CEP">
-                <span class="spans"></span>
-            </div>
-        </div>
 
-        <div class="input_group">
-            <div class="container_input">
-                <input type="text" name="rua" id="rua" class="input-field" placeholder="Rua" readonly>
-                <span class="spans"></span>
+            <div class="input_group">
+                <div class="container_input">
+                    <input type="text" name="cpf" id="cpf" class="input-field" placeholder="CPF" >
+                    <span class="spans"></span>
+                </div>
+                
+                <div class="container_input">
+                    <input type="text" name="rg" id="rg" class="input-field" placeholder="RG" >
+                    <span class="spans"></span>
+                </div>
+                
+                <div class="container_input">
+                    <input type="text" name="cep" id="cep" class="input-field" placeholder="CEP">
+                    <span class="spans"></span>
+                </div>
             </div>
-            
-            <div class="container_input">
-                <input type="text" name="bairro" id="bairro" class="input-field" placeholder="Bairro" readonly>
-                <span class="spans"></span>
-            </div>
-            
-            <div class="container_input">
-                <input type="text" name="cidade" id="cidade" class="input-field" placeholder="Cidade" readonly>
-                <span class="spans"></span>
-            </div>
-        </div>
 
-        <div class="input_group">
-            <div class="container_input">
-                <input type="text" name="estado" id="estado" class="input-field" placeholder="Estado" readonly>
-                <span class="spans"></span>
+            <div class="input_group">
+                <div class="container_input">
+                    <input type="text" name="rua" id="rua" class="input-field" placeholder="Rua" readonly>
+                    <span class="spans"></span>
+                </div>
+                
+                <div class="container_input">
+                    <input type="text" name="bairro" id="bairro" class="input-field" placeholder="Bairro" readonly>
+                    <span class="spans"></span>
+                </div>
+                
+                <div class="container_input">
+                    <input type="text" name="cidade" id="cidade" class="input-field" placeholder="Cidade" readonly>
+                    <span class="spans"></span>
+                </div>
             </div>
-            
-            <div class="container_input">
-                <input type="text" name="numero" id="numero" class="input-field" placeholder="Número" >
-                <span class="spans"></span>
+
+            <div class="input_group">
+                <div class="container_input">
+                    <input type="text" name="estado" id="estado" class="input-field" placeholder="Estado" readonly>
+                    <span class="spans"></span>
+                </div>
+                
+                <div class="container_input">
+                    <input type="text" name="numero" id="numero" class="input-field" placeholder="Número" >
+                    <span class="spans"></span>
+                </div>
+                
+                <div class="container_input">
+                    <input type="text" name="complemento" id="complemento" class="input-field" placeholder="Complemento (opicional)">
+                    <span class="spans"></span>
+                </div>
             </div>
-            
-            <div class="container_input">
-                <input type="text" name="complemento" id="complemento" class="input-field" placeholder="Complemento (opicional)">
-                <span class="spans"></span>
-            </div>
-        </div>
 
             <div class="buttons">
                 <button type="submit" name="adicionar" class="button">Adicionar</button>

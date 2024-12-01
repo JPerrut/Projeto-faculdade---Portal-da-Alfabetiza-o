@@ -37,7 +37,7 @@ function fetchData($tableName, $columns, $where = null, $conn) {
  * @return string HTML da tabela.
  */
 
- function generateTable($result, $tableName, $columns) {
+function generateTable($result, $tableName, $columns) {
     if ($result->num_rows == 0) {
         return "<p>Nenhum dado encontrado.</p>";
     }
@@ -55,8 +55,12 @@ function fetchData($tableName, $columns, $where = null, $conn) {
     // Adicionar cabeçalhos das colunas principais
     $resultColumns = array_keys($result->fetch_assoc());
     $result->data_seek(0); // Retorna ao início dos resultados
+    
     foreach ($resultColumns as $column) {
-        $table .= "<th>" . htmlspecialchars($column) . "</th>";
+        // Verifica se a coluna é `id_empresa` e omite se estiver exibindo funcionários
+        if ($tableName !== 'funcionarios' || $column !== 'id_empresa') {
+            $table .= "<th>" . htmlspecialchars($column) . "</th>";
+        }
     }
 
     // Adicionar cabeçalho da coluna "Editar"
@@ -73,15 +77,27 @@ function fetchData($tableName, $columns, $where = null, $conn) {
     while ($row = $result->fetch_assoc()) {
         $table .= "<tr>";
         foreach ($columns as $column) {
-            $table .= "<td>" . htmlspecialchars($row[$column]) . "</td>";
+            // Verifica se a coluna é `id_empresa` e omite se estiver exibindo funcionários
+            if ($tableName !== 'funcionarios' || $column !== 'id_empresa') {
+                $table .= "<td>" . htmlspecialchars($row[$column]) . "</td>";
+            }
         }
 
         // Adicionar célula de edição
-        $table .= "<td><a href='edita.php?"
-            . ($tableName === 'empresas' ? "id=" . htmlspecialchars($row['id_empresa']) : "id=" . htmlspecialchars($row['id_funcionario']))
-            . "&table=" . htmlspecialchars($tableName)
-            . "&columns=" . htmlspecialchars(implode(',', $columns))
-            . "'>Editar</a></td>";
+        if ($tableName === 'funcionarios') {
+            $table .= "<td><a href='edita.php?"
+                . "id=" . htmlspecialchars($row['id_funcionario'])
+                . "&table=" . htmlspecialchars($tableName)
+                . "&columns=" . htmlspecialchars(implode(',', $columns))
+                . "&id_empresa=" . htmlspecialchars($row['id_empresa'])
+                . "'>Editar</a></td>";
+        } elseif ($tableName === 'empresas') {
+            $table .= "<td><a href='edita.php?"
+                . "id=" . htmlspecialchars($row['id_empresa']) // Corrige para empresas
+                . "&table=" . htmlspecialchars($tableName)
+                . "&columns=" . htmlspecialchars(implode(',', $columns))
+                . "'>Editar</a></td>";
+        }
 
         // Adicionar célula de funcionários apenas se necessário
         if ($showEmployees && $tableName === 'empresas') {

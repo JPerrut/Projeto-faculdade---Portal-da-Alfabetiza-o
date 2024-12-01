@@ -3,7 +3,7 @@ include 'dashboard_adminOFC.php';
 $id_empresa = $_SESSION['user_id'];
 // Definir tabela e colunas com base no tipo de exibição
 $tableName = $_GET['table'] ?? 'funcionarios';
-$columns = $_GET['columns'] ?? 'id_funcionario,nome_func,cpf,rg';
+$columns = $_GET['columns'] ?? 'id_funcionario,nome_func, rg, cpf, data_nasc, turno, escolaridade, sexo, cep, estado, cidade, bairro, rua, numero, complemento';
 $isAdmin = $_GET['isAdmin'] ?? TRUE;
 include 'buscarOFC.php';
 include 'verificar_tabelaOFC.php';
@@ -15,34 +15,32 @@ unset($_POST['id_empresa']);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="admin_funcionarios.css">
+    <link rel="stylesheet" href="Screens/Geral/header.css">
+    <link rel="stylesheet" href="Screens/Geral/global.css">
     <title>Funcionários Cadastrados</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        table, th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-        th {
-            background-color: #f2f2f2;
-            font-weight: bold;
-            text-align: left;
-        }
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-    </style>
 </head>
 <body>
-    
-<h2><?php echo ucfirst($tableName); ?> Cadastrados</h2>
-    <?php echo generateTable($result, $tableName, $columns); 
-    
-    // Fechar a conexão
-    $conn->close();
-    ?>
+    <header>
+        <div class="container">
+            <nav class="nav-menu">
+                <a href="./Screens/UserLogado/user_logado.php">
+                    <div>Inicio</div>
+                </a>
+                <a href="admin_empresasOFC.php">
+                    <div>Voltar</div>
+                </a>
+            </nav> <!-- class="nav-menu" FIM -->
+        </div> <!-- class="container" FIM -->
+    </header>
+        
+    <main>
+        <h2><?php echo ucfirst($tableName); ?> Cadastrados</h2>
+        <?php echo generateTable($result, $tableName, $columns); 
+        
+        // Fechar a conexão
+        $conn->close();
+        ?>
+    </main>
 </body>
 </html>

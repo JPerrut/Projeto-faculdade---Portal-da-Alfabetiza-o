@@ -7,11 +7,11 @@ $('#cep').on('blur', function () {
     if (cep.length === 8) {
         $.getJSON(`https://viacep.com.br/ws/${cep}/json/`, function (data) {
             if (!data.erro) {
-                $('#rua').val(data.logradouro).trigger('keyup');
-                $('#bairro').val(data.bairro).trigger('keyup');
-                $('#cidade').val(data.localidade).trigger('keyup');
-                $('#estado').val(data.uf).trigger('keyup');
                 $('#cep').next('.spans').text('');
+                $('#estado').val(data.uf).trigger('keyup');
+                $('#cidade').val(data.localidade).trigger('keyup');
+                $('#bairro').val(data.bairro).trigger('keyup');
+                $('#rua').val(data.logradouro).trigger('keyup');
             } else {
                 $('#rua, #bairro, #cidade, #estado').val('');
                 $('#cep').next('.spans').text('CEP não encontrado.');
