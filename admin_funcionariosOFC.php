@@ -3,11 +3,12 @@ include 'dashboard_adminOFC.php';
 $id_empresa = $_SESSION['user_id'];
 // Definir tabela e colunas com base no tipo de exibição
 $tableName = $_GET['table'] ?? 'funcionarios';
-$columns = $_GET['columns'] ?? '*';
+$columns = $_GET['columns'] ?? 'id_funcionario,nome_func,cpf,rg';
 $isAdmin = $_GET['isAdmin'] ?? TRUE;
-$funcionario = $_GET['coluna'] ?? 'id_funcionario';
 include 'buscarOFC.php';
 include 'verificar_tabelaOFC.php';
+unset($_POST['id_empresa']);
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -38,7 +39,7 @@ include 'verificar_tabelaOFC.php';
 <body>
     
 <h2><?php echo ucfirst($tableName); ?> Cadastrados</h2>
-    <?php echo generateTable($result, $tableName); 
+    <?php echo generateTable($result, $tableName, $columns); 
     
     // Fechar a conexão
     $conn->close();

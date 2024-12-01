@@ -1,6 +1,5 @@
 <?php
 include 'conexaoOFC.php';
-ini_set('memory_limit', '512M'); // Aumenta para 256MB
 /**
  * Busca dados de uma tabela com condições opcionais.
  *
@@ -10,6 +9,7 @@ ini_set('memory_limit', '512M'); // Aumenta para 256MB
  * @param mysqli $conn Conexão do banco de dados.
  * @return mysqli_result|false Resultado da consulta ou false em caso de erro.
  */ 
+
 function fetchData($tableName, $columns, $where = null, $conn) {
     $sql = "SELECT $columns FROM $tableName";
     if ($where) {
@@ -37,35 +37,67 @@ function fetchData($tableName, $columns, $where = null, $conn) {
  * @return string HTML da tabela.
  */
 
-function generateTable($result, $tableName, $columns) {
+ function generateTable($result, $tableName, $columns) {
     if ($result->num_rows == 0) {
         return "<p>Nenhum dado encontrado.</p>";
     }
 
+    if (is_string($columns)) {
+        $columns = explode(',', $columns); // Garante que seja um array
+    }
+
+    // Verificar se o botão de funcionários deve ser exibido
+    $showEmployees = isset($_GET['showEmployees']) ? filter_var($_GET['showEmployees'], FILTER_VALIDATE_BOOLEAN) : true;
+
     $table = "<table>";
     $table .= "<tr>";
-    $columns = array_keys($result->fetch_assoc());
-    $result->data_seek(0); // Volta ao início dos resultados
-    foreach ($columns as $column) {
+
+    // Adicionar cabeçalhos das colunas principais
+    $resultColumns = array_keys($result->fetch_assoc());
+    $result->data_seek(0); // Retorna ao início dos resultados
+    foreach ($resultColumns as $column) {
         $table .= "<th>" . htmlspecialchars($column) . "</th>";
     }
-    $table .= "<th>Ações</th></tr>";
 
+    // Adicionar cabeçalho da coluna "Editar"
+    $table .= "<th>Editar</th>";
+
+    // Adicionar cabeçalho da coluna "Funcionários" apenas se necessário
+    if ($showEmployees && $tableName === 'empresas') {
+        $table .= "<th>Funcionários</th>";
+    }
+
+    $table .= "</tr>";
+
+    // Adicionar dados das linhas
     while ($row = $result->fetch_assoc()) {
         $table .= "<tr>";
         foreach ($columns as $column) {
             $table .= "<td>" . htmlspecialchars($row[$column]) . "</td>";
         }
-        // Corrigir o uso de $tableName
-        $table .= "<td><a href='edita.php?id=" . htmlspecialchars($row['id_empresa']) . "&table=" . htmlspecialchars($tableName) . "&columns=" . htmlspecialchars($columns) . "'>Editar</a></td>";
+
+        // Adicionar célula de edição
+        $table .= "<td><a href='edita.php?"
+            . ($tableName === 'empresas' ? "id=" . htmlspecialchars($row['id_empresa']) : "id=" . htmlspecialchars($row['id_funcionario']))
+            . "&table=" . htmlspecialchars($tableName)
+            . "&columns=" . htmlspecialchars(implode(',', $columns))
+            . "'>Editar</a></td>";
+
+        // Adicionar célula de funcionários apenas se necessário
+        if ($showEmployees && $tableName === 'empresas') {
+            $table .= "<td><a href='admin_funcionariosOFC.php?id_empresa=" . htmlspecialchars($row['id_empresa']) . "&showEmployees=false'>Ver Funcionários</a></td>";
+        }
+
         $table .= "</tr>";
     }
     $table .= "</table>";
 
-    
-
     return $table;
 }
+
+
+
+
 
 
 

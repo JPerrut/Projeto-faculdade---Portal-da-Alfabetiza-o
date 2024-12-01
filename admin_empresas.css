@@ -1,0 +1,107 @@
+.container:not(header.container){
+  flex-direction: column;
+}
+
+table {
+  height: 100%;
+  width: 100%;
+  max-width: 1280px;
+  overflow-y: auto;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 3px 4px 5px 4px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+h2{
+  color: var(--font-color);
+  margin: 20px auto;
+  font-size: 4.3rem;
+  font-weight: 700;
+  background: var(--text-blue-gradient-color);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s;
+  text-align: center;
+}
+
+th, td {
+  font-size: 2rem;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  
+  color: #fdfcfc;
+  font-weight: 600;
+  font-size: 3rem;
+}
+
+
+tr:nth-child(even) {
+  background-color: rgba(219, 219, 219, 0.1);
+}
+
+tr:hover {
+  background-color: rgba(219, 219, 219, 0.2);
+}
+
+
+table a{
+  font-size: 2rem;
+  padding: 6px 14px;
+  background: linear-gradient(var(--back-color), var(--back-color)) padding-box, var(--blue-gradient-color) border-box;
+  border: 1px solid transparent;
+  color: var(--font-color);
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 2rem;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+a:hover{
+  opacity: 80%;
+}
+
+
+/* Estilo responsivo para dispositivos móveis */
+@media (max-width: 768px) {
+  table {
+      display: block;
+      overflow-x: auto;
+      width: 100%;
+  }
+
+  th, td {
+      padding: 8px 10px;
+  }
+
+  tr {
+      display: block;
+      margin-bottom: 10px;
+  }
+
+  th, td {
+      display: block;
+      text-align: right;
+  }
+
+  th::before, td::before {
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+  }
+
+  th {
+      background-color: #4CAF50;
+      color: #fff;
+  }
+
+  td {
+      border-top: 1px solid #ddd;
+  }
+}

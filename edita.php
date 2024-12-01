@@ -3,7 +3,6 @@ session_start();
 include 'conexaoOFC.php';
 
 // Captura os parâmetros
-
 $columns = $_GET['columns'] ?? null;
 $tableName = $_GET['table'] ?? null;
 $isAdmin = $_GET['isAdmin'] ?? null;
@@ -12,37 +11,33 @@ if (!$tableName) {
     die("Tabela inválida.");
 }
 
-// Busca apenas uma informação
-$query = "SELECT id_empresa FROM $tableName";
-$stmt = $conn->prepare($query);
-$stmt->execute();
-$result = $stmt->get_result();
- 
-$tabelasAceitas = ['empresas', 'funcionarios']; // Lista de tabelas válidas
+// Lista de tabelas válidas
+$tabelasAceitas = ['empresas', 'funcionarios'];
 if (!in_array($tableName, $tabelasAceitas)) {
     die("Tabela inválida.");
-} 
+}
 
-$colunasAceitas = ['id_empresa', 'nome_empresa', 'cnpj', 'email'];
-
-// Divide as colunas passadas (caso haja mais de uma)
+// Lista de colunas válidas
+$colunasAceitas = ['id_empresa', 'id_funcionario', 'nome_func', 'rg', 'cpf', 'turno', 'sexo', 'escolaridade', 'data_nasc',  'nome_empresa', 'cnpj', 'email', 'telefone', 'bairro','cep','estado', 'cidade', 'rua ', 'numero', 'complemento', 'telefone', 'celular', ];
+$columns = $_GET['columns'] ?? null;
+if (!$columns) {
+    die("Colunas inválidas ou ausentes.");
+}
 $arrayColunas = explode(',', $columns);
 
-// Verifica se cada coluna passada é válida
+// Verifica se as colunas são válidas
 foreach ($arrayColunas as $column) {
     if (!in_array(trim($column), $colunasAceitas)) {
         die("Coluna inválida: $column");
-    }  
-}  
-  
-// Lista de colunas permitidas
+    }
+}
 
 if (filter_var($id, FILTER_VALIDATE_INT) === false) {
     die("ID inválido. O valor fornecido não é um inteiro.");
-} 
+}
 
 // Busca os dados existentes
-$query = "SELECT $columns FROM $tableName WHERE id_empresa = $id";
+$query = "SELECT $columns FROM $tableName WHERE id_empresa = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param('i', $id);
 $stmt->execute();
@@ -50,25 +45,31 @@ $result = $stmt->get_result();
 $data = $result->fetch_assoc();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Atualiza os dados  
-
+    // Atualiza os dados, excluindo `id_empresa`
     $updates = [];
+    $values = [];
+
     foreach ($_POST as $column => $value) {
-        $updates[] = "$column = ?";
+        if ($column !== 'id_empresa') { // Ignorar id_empresa
+            $updates[] = "$column = ?";
+            $values[] = $value;
+        }
     }
-    $sql = "UPDATE $tableName SET " . implode(", ", $updates) . " WHERE id_empresa = $id";
+
+    $sql = "UPDATE $tableName SET " . implode(", ", $updates) . " WHERE id_empresa = ?";
     $stmt = $conn->prepare($sql);
 
-    $types = str_repeat('s', count($columns));
-    $params = array_merge(array_values($columns),);
-    $stmt->bind_param($types, ...$params);
+    // Adicionar id_empresa como parâmetro para WHERE
+    $values[] = $id;
+    $types = str_repeat('s', count($values) - 1) . 'i'; // Tipos dinâmicos
+    $stmt->bind_param($types, ...$values);
     $stmt->execute();
 
     // Redireciona após o sucesso para evitar reenvio do formulário
     header("Location: admin_empresasOFC.php?table=$tableName");
     exit();
 }
-?> 
+?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -82,13 +83,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form method="POST">
         <?php if ($data): ?>
             <?php foreach ($data as $column => $value): ?>
-                <label for="<?php echo $column; ?>"><?php echo ucfirst($column); ?></label>
-                <input type="text" id="<?php echo $column; ?>" name="<?php echo $column; ?>" value="<?php echo htmlspecialchars($value); ?>">
-                <br>
+                <?php if ($column !== 'id_empresa'): ?>
+                    <!-- Campos editáveis para outras colunas -->
+                    <label for="<?php echo $column; ?>"><?php echo ucfirst($column); ?></label>
+                    <input type="text" id="<?php echo $column; ?>" name="<?php echo $column; ?>" value="<?php echo htmlspecialchars($value); ?>">
+                    <br>
+                <?php endif; ?>
             <?php endforeach; ?>
             <button type="submit">Salvar</button>
         <?php else: ?>
-            <p>Nenhum dado encontrado </p>
+            <p>Nenhum dado encontrado.</p>
         <?php endif; ?>
     </form>
 </body>
