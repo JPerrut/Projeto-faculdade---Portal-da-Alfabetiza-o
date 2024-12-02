@@ -94,30 +94,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="edita.css">
+    <link rel="stylesheet" href="Screens/Geral/header.css">
+    <link rel="stylesheet" href="Screens/Geral/global.css">
     <title>Editar <?php echo ucfirst($tableName); ?></title>
 </head>
 <body>
-<h2>Editar <?php echo ucfirst($tableName); ?></h2>
     <form method="POST">
+        <h2>Editar <?php echo ucfirst($tableName); ?></h2>
         <?php if ($data): ?>
         <?php foreach ($data as $column => $value): ?>
             <?php if (($tableName === 'empresas' && $column === 'id_empresa') || ($tableName === 'funcionarios' && $column === 'id_funcionario')): ?>
                 <!-- Campo apenas visível (não enviado no POST) -->
-                <label for="<?php echo $column; ?>"><?php echo ucfirst($column); ?></label>
-                <input type="text" id="<?php echo $column; ?>" value="<?php echo htmlspecialchars($value); ?>" readonly>
-                <br>
-                <!-- Campo oculto para manter o ID correto -->
-                <input type="hidden" name="<?php echo $column; ?>" value="<?php echo htmlspecialchars($value); ?>">
-            <?php else: ?>
-                <!-- Campos editáveis para outras colunas -->
-                <label for="<?php echo $column; ?>"><?php echo ucfirst($column); ?></label>
-                <input type="text" id="<?php echo $column; ?>" name="<?php echo $column; ?>" value="<?php echo htmlspecialchars($value); ?>">
-                <br>
-            <?php endif; ?>
-        <?php endforeach; ?>
-            <button type="submit">Salvar</button>
-        <?php else: ?>
-            <p>Nenhum dado encontrado.</p>
+                <div class="input_group">
+                    <div class="container_input">
+                        <label for="<?php echo $column; ?>"><?php echo ucfirst($column); ?></label>
+                        <input type="text" id="<?php echo $column; ?>" value="<?php echo htmlspecialchars($value); ?>" readonly>
+                    </div>
+                    <!-- Campo oculto para manter o ID correto -->
+                    <input type="hidden" name="<?php echo $column; ?>" value="<?php echo htmlspecialchars($value); ?>">
+                    <?php else: ?>
+                        <!-- Campos editáveis para outras colunas -->
+                    <div class="container_input">
+                        <label for="<?php echo $column; ?>"><?php echo ucfirst($column); ?>:</label>
+                        <input type="text" id="<?php echo $column; ?>" name="<?php echo $column; ?>" value="<?php echo htmlspecialchars($value); ?>">
+                    </div>
+                </div>
+                <?php endif; ?>
+                <?php endforeach; ?>
+                <button class="button" type="submit">Salvar</button>
+                <?php else: ?>
+                    <p>Nenhum dado encontrado.</p>
         <?php endif; ?>
     </form>
 </body>

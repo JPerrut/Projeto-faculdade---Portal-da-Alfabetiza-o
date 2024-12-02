@@ -3,7 +3,7 @@ include 'dashboard_adminOFC.php';
 $id_empresa = $_SESSION['user_id'];
 // Definir tabela e colunas com base no tipo de exibição
 $tableName = $_GET['table'] ?? 'funcionarios';
-$columns = $_GET['columns'] ?? 'id_funcionario,nome_func, rg, cpf, data_nasc, turno, escolaridade, sexo, cep, estado, cidade, bairro, rua, numero, complemento';
+$columns = $_GET['columns'] ?? 'id_funcionario,nome_func, rg, cpf, data_nasc, turno, escolaridade, email, sexo, cep, estado, cidade, bairro, rua, numero, complemento';
 $isAdmin = $_GET['isAdmin'] ?? TRUE;
 include 'buscarOFC.php';
 include 'verificar_tabelaOFC.php';

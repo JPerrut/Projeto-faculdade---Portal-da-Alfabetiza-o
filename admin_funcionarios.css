@@ -6,7 +6,7 @@ main {
 
 table {
   display: flex;
-  max-width: 700px;
+  max-width: 325px;
   width: 100%;
   overflow-y: auto;
   padding: 10px;
@@ -45,7 +45,10 @@ td:nth-child(9), th:nth-child(9),
 td:nth-child(10), th:nth-child(10),
 td:nth-child(11), th:nth-child(11),
 td:nth-child(12), th:nth-child(12),
-td:nth-child(13), th:nth-child(13) {
+td:nth-child(13), th:nth-child(13),
+td:nth-child(14), th:nth-child(14),
+td:nth-child(15), th:nth-child(15),
+td:nth-child(16), th:nth-child(16) {
   display: none;
 }
 
