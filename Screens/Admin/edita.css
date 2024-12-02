@@ -1,7 +1,7 @@
 /* =======================
    FORMULÁRIOS > BEGINNING
 ========================== */
-body {
+main {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -74,6 +74,17 @@ form .container_input {
 input[readonly] {
   background: rgba(143, 142, 142, 0.6);
   cursor: not-allowed;
+}
+
+.nav-menu a {
+  padding: 6px 14px;
+  background: linear-gradient(var(--back-color), var(--back-color)) padding-box, var(--blue-gradient-color) border-box;
+  border: 1px solid transparent;
+  color: var(--font-color);
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 4rem;
+  transition: background-color 0.3s;
 }
 
   /* ==================

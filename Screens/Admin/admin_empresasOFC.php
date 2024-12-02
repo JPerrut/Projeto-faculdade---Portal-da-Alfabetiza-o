@@ -1,12 +1,12 @@
 <?php
-include 'dashboard_adminOFC.php';
+include '../../dashboard_adminOFC.php';
 $id_empresa = $_SESSION['user_id'];
 // Definir tabela e colunas com base no tipo de exibição
 $tableName = $_GET['table'] ?? 'empresas';
 $columns = $_GET['columns'] ?? 'id_empresa,nome_empresa, email, cnpj, cep, estado, cidade, bairro, rua, numero, complemento, telefone, celular';
 $isAdmin = $_GET['isAdmin'] ?? TRUE;
-include 'buscarOFC.php';
-include 'verificar_tabelaOFC.php';
+include '../../conexoes/buscarOFC.php';
+include '../../conexoes/verificar_tabelaOFC.php';
 unset($_POST['id_empresa']);
 
 ?>
@@ -17,19 +17,17 @@ unset($_POST['id_empresa']);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Empresas Cadastradas</title>
-
-    <link rel="stylesheet" href="Screens/Geral/header.css">
-    <link rel="stylesheet" href="Screens/Geral/global.css">
+    <link rel="stylesheet" href="../Geral/header.css">
+    <link rel="stylesheet" href="../Geral/global.css">
     <link rel="stylesheet" href="admin_empresas.css">
-  
+    <title>Empresas Cadastradas</title>
 </head>
 <body>
 
 <header>
     <div class="container">
         <nav class="nav-menu">
-            <a href="./Screens/UserLogado/user_logado.php">
+            <a href="../UserLogado/user_logado.php">
                 <div>Inicio</div>
             </a>
         </nav> <!-- class="nav-menu" FIM -->

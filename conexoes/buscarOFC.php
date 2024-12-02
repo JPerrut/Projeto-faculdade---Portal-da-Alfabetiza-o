@@ -37,7 +37,7 @@ function fetchData($tableName, $columns, $where = null, $conn) {
  * @return string HTML da tabela.
  */
 
-function generateTable($result, $tableName, $columns) {
+ function generateTable($result, $tableName, $columns) {
     if ($result->num_rows == 0) {
         return "<p>Nenhum dado encontrado.</p>";
     }
@@ -46,44 +46,40 @@ function generateTable($result, $tableName, $columns) {
         $columns = explode(',', $columns); // Garante que seja um array
     }
 
-    // Verificar se o botão de funcionários deve ser exibido
     $showEmployees = isset($_GET['showEmployees']) ? filter_var($_GET['showEmployees'], FILTER_VALIDATE_BOOLEAN) : true;
 
-    $table = "<table>";
+    $table = "<form method='POST' action='excel.php'>";
+    $table .= "<input type='hidden' name='tableName' value='" . htmlspecialchars($tableName) . "'>";
+    $table .= "<input type='hidden' name='columns' value='" . htmlspecialchars(implode(',', $columns)) . "'>";
+    $table .= "<button type='submit'>Exportar para Excel e Enviar por E-mail</button>";
+    $table .= "</form>";
+
+    $table .= "<table>";
     $table .= "<tr>";
 
-    // Adicionar cabeçalhos das colunas principais
     $resultColumns = array_keys($result->fetch_assoc());
-    $result->data_seek(0); // Retorna ao início dos resultados
-    
+    $result->data_seek(0);
+
     foreach ($resultColumns as $column) {
-        // Verifica se a coluna é `id_empresa` e omite se estiver exibindo funcionários
         if ($tableName !== 'funcionarios' || $column !== 'id_empresa') {
             $table .= "<th>" . htmlspecialchars($column) . "</th>";
         }
     }
 
-    // Adicionar cabeçalho da coluna "Editar"
     $table .= "<th>Editar</th>";
-
-    // Adicionar cabeçalho da coluna "Funcionários" apenas se necessário
     if ($showEmployees && $tableName === 'empresas') {
         $table .= "<th>Funcionários</th>";
     }
-
     $table .= "</tr>";
 
-    // Adicionar dados das linhas
     while ($row = $result->fetch_assoc()) {
         $table .= "<tr>";
         foreach ($columns as $column) {
-            // Verifica se a coluna é `id_empresa` e omite se estiver exibindo funcionários
             if ($tableName !== 'funcionarios' || $column !== 'id_empresa') {
                 $table .= "<td>" . htmlspecialchars($row[$column]) . "</td>";
             }
         }
 
-        // Adicionar célula de edição
         if ($tableName === 'funcionarios') {
             $table .= "<td><a href='edita.php?"
                 . "id=" . htmlspecialchars($row['id_funcionario'])
@@ -93,13 +89,12 @@ function generateTable($result, $tableName, $columns) {
                 . "'>Editar</a></td>";
         } elseif ($tableName === 'empresas') {
             $table .= "<td><a href='edita.php?"
-                . "id=" . htmlspecialchars($row['id_empresa']) // Corrige para empresas
+                . "id=" . htmlspecialchars($row['id_empresa'])
                 . "&table=" . htmlspecialchars($tableName)
                 . "&columns=" . htmlspecialchars(implode(',', $columns))
                 . "'>Editar</a></td>";
         }
 
-        // Adicionar célula de funcionários apenas se necessário
         if ($showEmployees && $tableName === 'empresas') {
             $table .= "<td><a href='admin_funcionariosOFC.php?id_empresa=" . htmlspecialchars($row['id_empresa']) . "&showEmployees=false'>Ver Funcionários</a></td>";
         }
@@ -110,6 +105,7 @@ function generateTable($result, $tableName, $columns) {
 
     return $table;
 }
+
 
 
 

@@ -1,12 +1,12 @@
 <?php
-include '../../../conexaoOFC.php';
+include '../../../conexoes/conexaoOFC.php';
 
 
 // Definir cabeçalhos para baixar o arquivo como Excel
 header("Content-Type: application/vnd.ms-excel");
 header("Content-Disposition: attachment; filename=usuarios.xls");
 header("Pragma: no-cache");
-header("Expires: 0");
+header("Expires: 0"); 
 
 // Imprimir os dados como uma tabela HTML
 echo "<table border='1'>
@@ -23,7 +23,7 @@ echo "<table border='1'>
             <th>CEP</th>
             <th>Estado</th>
             <th>Cidade</th>
-            <th>Bairro</th>
+            <th>Bairro</th>'
             <th>Rua</th>
             <th>Número</th>
             <th>Complemento</th>

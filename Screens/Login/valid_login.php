@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../../conexaoOFC.php';
+include '../../conexoes/conexaoOFC.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
     $email = filter_var(trim($_POST['loginEmail']), FILTER_SANITIZE_EMAIL);

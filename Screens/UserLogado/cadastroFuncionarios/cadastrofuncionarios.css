@@ -127,16 +127,15 @@ tr:hover {
 
 .form-section .input_group {
     display: flex;
-    flex-direction: row;
     justify-content: center;
     gap: 15px;
     width: 100%;
     max-width: 1200px;
-    padding: 0 2%;
 }
 
 .container_input {
     width: 100%;
+    max-width: 500px;
 }
 
 .container_input input, .container_input select {
@@ -198,13 +197,14 @@ button img {
     background: var(--back-color);
   }
 
-@media (max-width: 1000px) {
-
-    form {
-        font-size: 1rem;
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 15px;
     }
 
-    .input_group {
-        flex-direction: column;
+    h2 {
+        font-size: 1.8rem;
     }
-  }
+}

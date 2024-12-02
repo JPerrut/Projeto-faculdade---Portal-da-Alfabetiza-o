@@ -57,7 +57,7 @@ $name = $_SESSION['nome_empresa'];
                 </div> <!-- {class="leave" > END} -->
             </a>
 
-            <a class="menu_admin" href="../../admin_empresasOFC.php"> 
+            <a class="menu_admin" href="../../Screens/Admin/admin_empresasOFC.php"> 
                 <div class="editar_perfil_admin">
                     <i class="fa-solid fa-gear"></i>
                     <h6 class="cf_title">Acessar empresas</h6>
