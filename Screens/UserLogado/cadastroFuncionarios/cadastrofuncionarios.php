@@ -13,41 +13,56 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mensagem = "<div class='feedback-msg error-msg'>Erro: Empresa não identificada.</div>";
     } else {
         if (isset($_POST['adicionar'])) {
-            $sql = "INSERT INTO funcionarios (nome_func, email, data_nasc, numero, complemento, rua, bairro, cidade, 
-                estado, cep, escolaridade, sexo, turno, cpf, rg, id_empresa) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-            $stmt = $conn->prepare($sql);
-            if ($stmt) {
-                $stmt->bind_param(
-                    "sssssssssssssssi",
-                    $_POST['nome_func'],
-                    $_POST['email'],
-                    $_POST['data_nasc'],
-                    $_POST['numero'],
-                    $_POST['complemento'],
-                    $_POST['rua'],
-                    $_POST['bairro'],
-                    $_POST['cidade'],
-                    $_POST['estado'],
-                    $_POST['cep'],
-                    $_POST['escolaridade'],
-                    $_POST['sexo'],
-                    $_POST['turno'],
-                    $_POST['cpf'],
-                    $_POST['rg'],
-                    $id_empresa
-                );
+            $email = $_POST['email'];
+            $rg = $_POST['rg'];
+            $cpf = $_POST['cpf'];
 
-                if ($stmt->execute()) {
-                    $mensagem = "<div class='feedback-msg success-msg'>Novo funcionário adicionado com sucesso!</div>";
-                } else {
-                    $mensagem = "<div class='feedback-msg error-msg'>Erro ao adicionar funcionário: " . htmlspecialchars($stmt->error) . "</div>";
-                }
-
-                $stmt->close();
+            $check_sql = "SELECT * FROM funcionarios WHERE (email = ? OR rg = ? OR cpf = ?) AND id_empresa = ?";
+            $check_stmt = $conn->prepare($check_sql);
+            $check_stmt->bind_param("sssi", $email, $rg, $cpf, $id_empresa);
+            $check_stmt->execute();
+            $check_result = $check_stmt->get_result();
+            if ($check_result->num_rows > 0) {
+                $mensagem = "<div class='feedback-msg error-msg'>Erro: Email, RG ou CPF já cadastrados no banco de dados.</div>";
             } else {
-                $mensagem = "<div class='feedback-msg error-msg'>Erro de preparação na consulta: " . htmlspecialchars($conn->error) . "</div>";
+                // Insere o funcionário, pois não houve duplicatas
+                $sql = "INSERT INTO funcionarios (nome_func, email, data_nasc, numero, complemento, rua, bairro, cidade, 
+                    estado, cep, escolaridade, sexo, turno, cpf, rg, id_empresa) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+                $stmt = $conn->prepare($sql);
+                if ($stmt) {
+                    $stmt->bind_param(
+                        "sssssssssssssssi",
+                        $_POST['nome_func'],
+                        $_POST['email'],
+                        $_POST['data_nasc'],
+                        $_POST['numero'],
+                        $_POST['complemento'],
+                        $_POST['rua'],
+                        $_POST['bairro'],
+                        $_POST['cidade'],
+                        $_POST['estado'],
+                        $_POST['cep'],
+                        $_POST['escolaridade'],
+                        $_POST['sexo'],
+                        $_POST['turno'],
+                        $_POST['cpf'],
+                        $_POST['rg'],
+                        $id_empresa
+                    );
+
+                    if ($stmt->execute()) {
+                        $mensagem = "<div class='feedback-msg success-msg'>Novo funcionário adicionado com sucesso!</div>";
+                    } else {
+                        $mensagem = "<div class='feedback-msg error-msg'>Erro ao adicionar funcionário: " . htmlspecialchars($stmt->error) . "</div>";
+                    }
+
+                    $stmt->close();
+                } else {
+                    $mensagem = "<div class='feedback-msg error-msg'>Erro de preparação na consulta: " . htmlspecialchars($conn->error) . "</div>";
+                }
             }
         }
     }
@@ -239,13 +254,18 @@ $result = $stmt->get_result();
 
         <div class="input_group">
             <div class="container_input">
-                <input type="text" name="sexo" id="sexo" class="input-field" placeholder="Sexo" >
+                <select name="sexo" id="sexo">
+                    <option value="" selected>Sexo</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Feminino">Feminino</option>
+                    <option value="Outros">Outros</option>
+                </select>
                 <span class="spans"></span>
             </div>
             
             <div class="container_input">
                 <select name="turno" id="turno">
-                    <option value="" selected>Selecione</option>
+                    <option value="" selected>Turno</option>
                     <option value="Manhã">Manhã</option>
                     <option value="Tarde">Tarde</option>
                     <option value="Noite">Noite</option>
@@ -255,7 +275,7 @@ $result = $stmt->get_result();
             
             <div class="container_input">
             <select name="escolaridade" id="escolaridade">
-                    <option value="" selected>Selecione</option>
+                    <option value="" selected>Escolaridade</option>
                     <option value="AF">Analfabeto</option>
                     <option value="EFI">Ensino Fundamental incompleto</option>
                     <option value="EMI">Ensino Médio incompleto</option>
